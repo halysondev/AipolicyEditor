@@ -1,0 +1,28 @@
+﻿<Controls:MetroWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    lex:LocalizeDictionary.DesignCulture="en"
+    lex:LocalizeDictionary.OutputMissingKeys="True"
+    lex:ResxLocalizationProvider.DefaultAssembly="AipolicyEditor"
+    lex:ResxLocalizationProvider.DefaultDictionary="Localization"
+    lex:LocalizeDictionary.IncludeInvariantCulture="True"
+    x:Class="AipolicyEditor.SearchWin"
+    Title="SearchWin"
+    Height="450"
+    Width="550" ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="SearchPattern" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="524"/>
+        <Button x:Name="Search" Content="{lex:Loc Search}" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="524" Click="Search_Click"/>
+        <ListBox x:Name="SearchResults" HorizontalAlignment="Left" Height="291" Margin="10,93,0,0" VerticalAlignment="Top" Width="524" MouseDoubleClick="SearchResults_MouseDoubleClick"/>
+        <Label Content="{lex:Loc SearchPattern}" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" Width="140" HorizontalContentAlignment="Center"/>
+        <Label Content="{lex:Loc SearchUsing}" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="145"/>
+        <ComboBox Name="SearchType" HorizontalAlignment="Left" Margin="160,390,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="TypeChange">
+            <ComboBoxItem Content="{lex:Loc Condition}"></ComboBoxItem>
+            <ComboBoxItem Content="{lex:Loc Operation}"></ComboBoxItem>
+        </ComboBox>
+        <ComboBox Name="Types" HorizontalAlignment="Left" Margin="265,389,0,0" VerticalAlignment="Top" Width="189"/>
+        <Button Content="{lex:Loc Search}" HorizontalAlignment="Left" Margin="459,389,0,0" VerticalAlignment="Top" Width="75" Click="SearchTypeClick"/>
+    </Grid>
+</Controls:MetroWindow>

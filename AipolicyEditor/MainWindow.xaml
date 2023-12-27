@@ -1,0 +1,198 @@
+﻿<Controls:MetroWindow x:Class="AipolicyEditor.MainWindow"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:local="clr-namespace:AipolicyEditor"
+        xmlns:conditions="clr-namespace:AipolicyEditor.AIPolicy.Conditions"
+        xmlns:system="clr-namespace:System"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        mc:Ignorable="d"
+        lex:LocalizeDictionary.DesignCulture="en"
+        lex:LocalizeDictionary.OutputMissingKeys="True"
+        lex:ResxLocalizationProvider.DefaultAssembly="AipolicyEditor"
+        lex:ResxLocalizationProvider.DefaultDictionary="Localization"
+        lex:LocalizeDictionary.IncludeInvariantCulture="False"
+        TitleCaps="False" Title="AipolicyEditor v1.7.6  Version  [40} - Updated by Haly" WindowStartupLocation="CenterScreen" Height="650" MinHeight="650" Width="1000" MinWidth="1000" AllowsTransparency="True" NonActiveWindowTitleBrush="Gray" Name="MainForm" ShowIconOnTitleBar="True" BorderThickness="1">
+    <Window.Resources>
+        <local:StringFormatToIntConverter x:Key="StringFormatToIntConverter"/>
+        <local:OperationConverter x:Key="OperationConverter"/>
+    </Window.Resources>
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Button Click="Open">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconOcticons Kind="FileDirectory" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Open}" Foreground="White" />
+                </StackPanel>
+            </Button>
+            <Button Click="Save">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterialLight Kind="ContentSave" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Save}" />
+                </StackPanel>
+            </Button>
+            <Button Click="SaveAs">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterialLight Kind="ContentSaveAll" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc SaveAs}" />
+                </StackPanel>
+            </Button>
+            <Button Click="Search_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconOcticons Kind="Search" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Search}" />
+                </StackPanel>
+            </Button>
+            <Button Click="Settings_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="Settings" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Settings}" />
+                </StackPanel>
+            </Button>
+            <Button Click="Tools_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="TreasureChest" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Tools}" />
+                </StackPanel>
+            </Button>
+            <Button Click="About_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="AlertCircle" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc About}" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="9*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="Controllers" SelectedIndex="{Binding ControllerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Controllers, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended" Margin="5,5,5,5" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" BorderBrush="#CC119EDA" SelectionChanged="Controllers_SelectionChanged" BorderThickness="1" Grid.Column="0" Grid.Row="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}">
+                                <Binding Path="ID" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{lex:Loc Clone}" Click="CloneController"/>
+                    <MenuItem Header="{lex:Loc Add}" Click="AddController"/>
+                    <MenuItem Header="{lex:Loc Remove}" Click="RemoveController"/>
+                    <Separator />
+                    <MenuItem Header="{lex:Loc Export}" Click="ExportController"/>
+                    <MenuItem Header="{lex:Loc Import}" Click="ImportController"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+        <Label Content="{lex:Loc ID}" HorizontalAlignment="Stretch" Margin="5,5,5,5" Grid.Column="0" Grid.Row="1"/>
+        <Controls:NumericUpDown Value="{Binding CurrentController.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" BorderBrush="#CC119EDA" Grid.Column="0" Grid.Row="2"/>
+        <GroupBox Header="{Binding TriggersHeader, FallbackValue=Triggers}" Margin="5,5,5,5" Grid.Column="1" Grid.RowSpan="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="0.4*"></RowDefinition>
+                    <RowDefinition Height="0.4*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <conditions:ConditionControl x:Name="Condition" BorderBrush="#CC119EDA" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+                <ListBox SelectedIndex="{Binding TriggerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CurrentTriggers, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended" BorderThickness="1" x:Name="Triggers" Margin="0,0,5,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="Triggers_SelectionChanged" BorderBrush="#CC119EDA" FontSize="11" Grid.Row="0" Grid.Column="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="[{0}] {1}">
+                                        <Binding Path="ID" />
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{lex:Loc Clone}" Click="CloneTrigger"/>
+                            <MenuItem Header="{lex:Loc Add}" Click="AddTrigger"/>
+                            <MenuItem Header="{lex:Loc Remove}" Click="RemoveTrigger"/>
+                            <Separator />
+                            <MenuItem Header="{lex:Loc Export}" Click="ExportTrigger"/>
+                            <MenuItem Header="{lex:Loc Import}" Click="ImportTrigger"/>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
+                <Controls:NumericUpDown Value="{Binding CurrentTrigger.ID, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5,5,5,5" BorderBrush="#CC119EDA" Grid.Row="2" Grid.Column="1"/>
+                <Label Content="{lex:Loc ID}" HorizontalAlignment="Left" Margin="5,5,5,5"  Grid.Row="1" Grid.Column="1"/>
+                <TextBox Text="{Binding CurrentTrigger.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Stretch" BorderBrush="#CC119EDA" Grid.Row="2" Grid.Column="0"/>
+                <Label Content="{lex:Loc Name}" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="1" Grid.Column="0"/>
+                <Controls:ToggleSwitch IsChecked="{Binding CurrentTrigger.Active, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnLabel="{lex:Loc Yes}" OffLabel="{lex:Loc No}" Header="{lex:Loc Active}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2"/>
+                <Controls:ToggleSwitch IsChecked="{Binding CurrentTrigger.Run, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnLabel="{lex:Loc Yes}" OffLabel="{lex:Loc No}" Header="{lex:Loc Run}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"/>
+                <Controls:ToggleSwitch IsChecked="{Binding CurrentTrigger.AttackValid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnLabel="{lex:Loc Yes}" OffLabel="{lex:Loc No}" Header="{lex:Loc AttackValid}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2"/>
+                <GroupBox Header="{Binding OperationsHeader, FallbackValue=Operations}" Margin="5,5,5,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ListBox SelectedIndex="{Binding OperationIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CurrentOperations, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended" BorderThickness="1" x:Name="Operations" Margin="0,0,5,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="#CC119EDA" SelectionChanged="Operations_SelectionChanged" FontSize="11" Grid.Column="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource OperationConverter}">
+                                                <Binding Path="OperID" />
+                                                <Binding Path="Name" />
+                                                <Binding Path="FromVersion" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="{lex:Loc Clone}" Click="CloneOperation"/>
+                                    <MenuItem Header="{lex:Loc Add}" Click="AddOperation"/>
+                                    <MenuItem Header="{lex:Loc Remove}" Click="RemoveOperation"/>
+                                    <Separator />
+                                    <MenuItem Header="{lex:Loc Export}" Click="ExportOperation"/>
+                                    <MenuItem Header="{lex:Loc Import}" Click="ImportOperation"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
+                        <syncfusion:PropertyGrid SelectedObject="{Binding CurrentOperation, UpdateSourceTrigger=PropertyChanged}" x:Name="Operation" SearchBoxVisibility="Collapsed" EnableGrouping="True" Margin="5,0,0,0" syncfusion:SkinStorage.VisualStyle="Metro" BorderBrush="#CC119EDA" LoadingDelay="0" ButtonPanelVisibility="Collapsed" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <local:SearchFlyouts x:Name="SearchFlyout"/>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+</Controls:MetroWindow>

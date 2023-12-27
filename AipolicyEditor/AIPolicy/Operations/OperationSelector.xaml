@@ -1,0 +1,19 @@
+﻿<Controls:MetroWindow x:Class="AipolicyEditor.AIPolicy.Operations.OperationSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    lex:LocalizeDictionary.DesignCulture="en"
+    lex:LocalizeDictionary.OutputMissingKeys="True"
+    lex:ResxLocalizationProvider.DefaultAssembly="AipolicyEditor"
+    lex:ResxLocalizationProvider.DefaultDictionary="Localization"
+    lex:LocalizeDictionary.IncludeInvariantCulture="False"
+    Title="OperationSelector"
+    Height="110"
+    Width="300"
+    WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Content="{lex:Loc Select}" Click="SelectionClick" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="272"/>
+        <ComboBox Name="Operations" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="272"/>
+    </Grid>
+</Controls:MetroWindow>

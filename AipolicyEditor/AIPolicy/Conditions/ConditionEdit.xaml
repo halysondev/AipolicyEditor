@@ -1,0 +1,31 @@
+﻿<Controls:MetroWindow x:Class="AipolicyEditor.AIPolicy.Conditions.ConditionEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AipolicyEditor"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="ConditionEdit" WindowStartupLocation="CenterScreen" Height="382" Width="200" ResizeMode="NoResize" ShowMinButton="False">
+    <Window.Resources>
+        <local:StringFormatToIntConverter x:Key="StringFormatToIntConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="77*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="{Binding Param1Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="10,41,0,0" VerticalAlignment="Top" Width="172" Height="26" Grid.ColumnSpan="2"/>
+        <Label Content="{Binding Param2Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="10,103,0,0" VerticalAlignment="Top" Width="172" Height="26" Grid.ColumnSpan="2"/>
+        <TextBox Visibility="{Binding Visible1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Param1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringFormatToIntConverter}}" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" Grid.ColumnSpan="2"/>
+        <TextBox Visibility="{Binding Visible2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Param2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringFormatToIntConverter}}" HorizontalAlignment="Left" Height="23" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" Grid.ColumnSpan="2"/>
+        <Label Content="{Binding Param3Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="10,165,0,0" VerticalAlignment="Top" Width="172" Height="26" Grid.ColumnSpan="2"/>
+        <TextBox Visibility="{Binding Visible3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Param3, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="10,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" Grid.ColumnSpan="2"/>
+        <Label Content="{Binding Param4Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Center" Width="172" Height="26" Grid.ColumnSpan="2"/>
+        <TextBox Visibility="{Binding Visible4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Param4, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="10,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" Grid.ColumnSpan="2"/>
+        <Label Content="{Binding Param5Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="10,293,0,0" VerticalAlignment="Top" Width="172" Height="26" Grid.ColumnSpan="2"/>
+        <TextBox Visibility="{Binding Visible5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Param5, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="10,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" Grid.ColumnSpan="2"/>
+
+        <ComboBox Name="ConditionBox" SelectedIndex="{Binding ConditionIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="172" Grid.ColumnSpan="2"/>
+    </Grid>
+</Controls:MetroWindow>
