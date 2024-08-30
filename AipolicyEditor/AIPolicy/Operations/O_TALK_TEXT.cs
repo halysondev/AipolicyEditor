@@ -119,7 +119,7 @@ namespace AipolicyEditor.AIPolicy.Operations
             byte[] data = Encoding.Unicode.GetBytes(channel + Text + '\0');
             bw.Write(data.Length);
             bw.Write(data);
-            bw.Write((uint)AppendDataMask);
+            bw.Write(Convert.ToUInt32(AppendDataMask));
             TargetStream.Save(bw, Target);
         }
 

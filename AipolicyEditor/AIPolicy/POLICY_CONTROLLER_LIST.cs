@@ -1,5 +1,6 @@
 ﻿using AipolicyEditor.AIPolicy.Operations;
 using AipolicyEditor.AIPolicy.Operations.CustomEditors;
+using System;
 using System.ComponentModel;
 using System.IO;
 
@@ -43,7 +44,7 @@ namespace AipolicyEditor.AIPolicy
         public static void Write(BinaryWriter bw, POLICY_CONTROLLER_LIST param)
         {
             bw.Write(param.uID);
-            bw.Write((int)param.uIDType);
+            bw.Write(Convert.ToUInt32(param.uIDType));
         }
     }
 }

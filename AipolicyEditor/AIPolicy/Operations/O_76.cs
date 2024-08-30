@@ -57,9 +57,9 @@ namespace AipolicyEditor.AIPolicy.Operations {
 		public void Write(BinaryWriter bw)
 		{
             bw.Write(uSkill);
-            bw.Write((int)uSkillType);
+            bw.Write(Convert.ToUInt32(uSkillType));
             bw.Write(uLevel);
-            bw.Write((int)uLevelType);
+            bw.Write(Convert.ToUInt32(uLevelType));
             TargetStream.Save(bw, Target);
 		}
 

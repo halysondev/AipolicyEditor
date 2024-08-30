@@ -17,7 +17,18 @@
         lex:ResxLocalizationProvider.DefaultAssembly="AipolicyEditor"
         lex:ResxLocalizationProvider.DefaultDictionary="Localization"
         lex:LocalizeDictionary.IncludeInvariantCulture="False"
-        TitleCaps="False" Title="AipolicyEditor v1.7.6  Version  [40} - Updated by Haly" WindowStartupLocation="CenterScreen" Height="650" MinHeight="650" Width="1000" MinWidth="1000" AllowsTransparency="True" NonActiveWindowTitleBrush="Gray" Name="MainForm" ShowIconOnTitleBar="True" BorderThickness="1">
+        Title="AipolicyEditor v1.7.8[40] - Haly" 
+        WindowStartupLocation="CenterScreen" 
+        Height="750" 
+        MinHeight="750" 
+        Width="1227" 
+        MinWidth="1227" 
+        AllowsTransparency="False" 
+        NonActiveWindowTitleBrush="#FF808080" 
+        Name="MainForm" 
+        ShowIconOnTitleBar="True" 
+        BorderThickness="1" 
+        Background="#CC0E0606">
     <Window.Resources>
         <local:StringFormatToIntConverter x:Key="StringFormatToIntConverter"/>
         <local:OperationConverter x:Key="OperationConverter"/>
@@ -27,64 +38,131 @@
             <Button Click="Open">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconOcticons Kind="FileDirectory" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Open}" Foreground="White" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Open" Foreground="#FFFFFFFF" />
                 </StackPanel>
             </Button>
             <Button Click="Save">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconMaterialLight Kind="ContentSave" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Save}" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Save" />
                 </StackPanel>
             </Button>
             <Button Click="SaveAs">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconMaterialLight Kind="ContentSaveAll" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc SaveAs}" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Save As" />
                 </StackPanel>
             </Button>
             <Button Click="Search_Click">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconOcticons Kind="Search" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Search}" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Search" />
                 </StackPanel>
             </Button>
             <Button Click="Settings_Click">
                 <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial Kind="Settings" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Settings}" />
+                    <iconPacks:PackIconMaterial Kind="ApplicationSettings" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Settings" />
                 </StackPanel>
             </Button>
             <Button Click="Tools_Click">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconMaterial Kind="TreasureChest" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc Tools}" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Tools" />
                 </StackPanel>
             </Button>
             <Button Click="About_Click">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconMaterial Kind="AlertCircle" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{lex:Loc About}" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="About" />
                 </StackPanel>
             </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.LeftWindowCommands>
-    <Grid>
+    <Grid Background="#FF292929">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="98*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="468*"/>
+            <RowDefinition Height="43*"></RowDefinition>
+            <RowDefinition Height="43*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="9*"></ColumnDefinition>
+            <ColumnDefinition
+				Width="100*" />
+            <ColumnDefinition
+				Width="5*" />
+            <ColumnDefinition Width="231*"/>
+            <ColumnDefinition Width="285*"/>
+            <ColumnDefinition
+				Width="181*" />
+            <ColumnDefinition
+				Width="186*" />
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="Controllers" SelectedIndex="{Binding ControllerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Controllers, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended" Margin="5,5,5,5" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" BorderBrush="#CC119EDA" SelectionChanged="Controllers_SelectionChanged" BorderThickness="1" Grid.Column="0" Grid.Row="0">
+
+        <ListBox 
+    x:Name="Controllers" 
+    SelectedIndex="{Binding ControllerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+    ItemsSource="{Binding Controllers, UpdateSourceTrigger=PropertyChanged}" 
+    SelectionMode="Extended" 
+    Margin="5,1,5,5" 
+    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+    ScrollViewer.CanContentScroll="False" 
+    BorderBrush="#CC119EDA" 
+    SelectionChanged="Controllers_SelectionChanged" 
+    BorderThickness="1" 
+    Grid.Column="0" 
+    Grid.Row="1" 
+    Background="#FF1A2430" 
+    IsSynchronizedWithCurrentItem="True" 
+    Foreground="#FFFFF4F4" 
+    Grid.RowSpan="3">
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="#FF1A2430"/>
+                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="Padding" Value="5,1,5,5"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                    <Setter Property="Typography.NumeralStyle" Value="OldStyle"/>
+                    <Setter Property="Typography.SlashedZero" Value="True"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" Value="#FF0078D7"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </MultiDataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF0078D7"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
+                    <TextBlock 
+                Background="Transparent"
+                Foreground="#FFFFFFFF"
+                FontSize="15"
+                LineHeight="Auto"
+                Padding="5,10,5,10"
+                TextAlignment="Center"
+                Typography.NumeralStyle="OldStyle"
+                Typography.SlashedZero="True">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0}">
-                                <Binding Path="ID" />
+                            <MultiBinding 
+                        StringFormat="{}{0}">
+                                <Binding 
+                            Path="ID" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
@@ -92,34 +170,73 @@
             </ListBox.ItemTemplate>
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="{lex:Loc Clone}" Click="CloneController"/>
-                    <MenuItem Header="{lex:Loc Add}" Click="AddController"/>
-                    <MenuItem Header="{lex:Loc Remove}" Click="RemoveController"/>
+                    <MenuItem Header="Clone" Click="CloneController"/>
+                    <MenuItem Header="Add" Click="AddController"/>
+                    <MenuItem Header="Remove" Click="RemoveController"/>
                     <Separator />
-                    <MenuItem Header="{lex:Loc Export}" Click="ExportController"/>
-                    <MenuItem Header="{lex:Loc Import}" Click="ImportController"/>
+                    <MenuItem Header="Export" Click="ExportController"/>
+                    <MenuItem Header="Import" Click="ImportController"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
-        <Label Content="{lex:Loc ID}" HorizontalAlignment="Stretch" Margin="5,5,5,5" Grid.Column="0" Grid.Row="1"/>
-        <Controls:NumericUpDown Value="{Binding CurrentController.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" BorderBrush="#CC119EDA" Grid.Column="0" Grid.Row="2"/>
-        <GroupBox Header="{Binding TriggersHeader, FallbackValue=Triggers}" Margin="5,5,5,5" Grid.Column="1" Grid.RowSpan="3">
+        <Label 
+            Content="ID"
+			Margin="5,5,5,5"
+			Grid.Column="0"
+			Grid.Row="4"
+			Foreground="#FFFFFFFF"/>
+        <Controls:NumericUpDown 
+            Value="{Binding CurrentController.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            Margin="5,5,5,5" 
+            BorderBrush="#CC119EDA" 
+            Grid.Column="0" 
+            Grid.Row="5" 
+            Background="#FF000000"/>
+
+        <GroupBox 
+            Header="{Binding TriggersHeader, FallbackValue=Triggers}" 
+            Margin="5,1,10,7" 
+            Grid.Column="2" 
+            Grid.RowSpan="3" 
+            Background="#CC0E0606" Grid.Row="3">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="0.4*"></RowDefinition>
-                    <RowDefinition Height="0.4*"></RowDefinition>
-                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition
+						Height="2*" />
+                    <RowDefinition
+						Height="0.4*" />
+                    <RowDefinition
+						Height="0.4*" />
+                    <RowDefinition
+						Height="3*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition
+						Width="1.5*" />
+                    <ColumnDefinition
+						Width="1*" />
+                    <ColumnDefinition
+						Width="1*" />
+                    <ColumnDefinition
+						Width="1*" />
+                    <ColumnDefinition
+						Width="1*" />
                 </Grid.ColumnDefinitions>
-                <conditions:ConditionControl x:Name="Condition" BorderBrush="#CC119EDA" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
-                <ListBox SelectedIndex="{Binding TriggerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CurrentTriggers, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended" BorderThickness="1" x:Name="Triggers" Margin="0,0,5,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="Triggers_SelectionChanged" BorderBrush="#CC119EDA" FontSize="11" Grid.Row="0" Grid.Column="0">
+                <ListBox 
+                    SelectedIndex="{Binding TriggerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    ItemsSource="{Binding CurrentTriggers, UpdateSourceTrigger=PropertyChanged}" 
+                    SelectionMode="Extended" 
+                    BorderThickness="1" 
+                    x:Name="Triggers" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                    SelectionChanged="Triggers_SelectionChanged" 
+                    BorderBrush="#CC119EDA" 
+                    FontSize="11" 
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Background="#FF1A2430" 
+                    Grid.RowSpan="4" 
+                    Grid.ColumnSpan="5" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -134,61 +251,135 @@
                     </ListBox.ItemTemplate>
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="{lex:Loc Clone}" Click="CloneTrigger"/>
-                            <MenuItem Header="{lex:Loc Add}" Click="AddTrigger"/>
-                            <MenuItem Header="{lex:Loc Remove}" Click="RemoveTrigger"/>
+                            <MenuItem Header="Clone" Click="CloneTrigger"/>
+                            <MenuItem Header="Add" Click="AddTrigger"/>
+                            <MenuItem Header="Remove" Click="RemoveTrigger"/>
                             <Separator />
-                            <MenuItem Header="{lex:Loc Export}" Click="ExportTrigger"/>
-                            <MenuItem Header="{lex:Loc Import}" Click="ImportTrigger"/>
+                            <MenuItem Header="Export" Click="ExportTrigger"/>
+                            <MenuItem Header="Import" Click="ImportTrigger"/>
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>
-                <Controls:NumericUpDown Value="{Binding CurrentTrigger.ID, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5,5,5,5" BorderBrush="#CC119EDA" Grid.Row="2" Grid.Column="1"/>
-                <Label Content="{lex:Loc ID}" HorizontalAlignment="Left" Margin="5,5,5,5"  Grid.Row="1" Grid.Column="1"/>
-                <TextBox Text="{Binding CurrentTrigger.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Stretch" BorderBrush="#CC119EDA" Grid.Row="2" Grid.Column="0"/>
-                <Label Content="{lex:Loc Name}" HorizontalAlignment="Left" Margin="5,5,5,5" Grid.Row="1" Grid.Column="0"/>
-                <Controls:ToggleSwitch IsChecked="{Binding CurrentTrigger.Active, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnLabel="{lex:Loc Yes}" OffLabel="{lex:Loc No}" Header="{lex:Loc Active}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2"/>
-                <Controls:ToggleSwitch IsChecked="{Binding CurrentTrigger.Run, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnLabel="{lex:Loc Yes}" OffLabel="{lex:Loc No}" Header="{lex:Loc Run}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"/>
-                <Controls:ToggleSwitch IsChecked="{Binding CurrentTrigger.AttackValid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnLabel="{lex:Loc Yes}" OffLabel="{lex:Loc No}" Header="{lex:Loc AttackValid}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2"/>
-                <GroupBox Header="{Binding OperationsHeader, FallbackValue=Operations}" Margin="5,5,5,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <ListBox SelectedIndex="{Binding OperationIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CurrentOperations, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended" BorderThickness="1" x:Name="Operations" Margin="0,0,5,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="#CC119EDA" SelectionChanged="Operations_SelectionChanged" FontSize="11" Grid.Column="0">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <MultiBinding Converter="{StaticResource OperationConverter}">
-                                                <Binding Path="OperID" />
-                                                <Binding Path="Name" />
-                                                <Binding Path="FromVersion" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                            <ListBox.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="{lex:Loc Clone}" Click="CloneOperation"/>
-                                    <MenuItem Header="{lex:Loc Add}" Click="AddOperation"/>
-                                    <MenuItem Header="{lex:Loc Remove}" Click="RemoveOperation"/>
-                                    <Separator />
-                                    <MenuItem Header="{lex:Loc Export}" Click="ExportOperation"/>
-                                    <MenuItem Header="{lex:Loc Import}" Click="ImportOperation"/>
-                                </ContextMenu>
-                            </ListBox.ContextMenu>
-                        </ListBox>
-                        <syncfusion:PropertyGrid SelectedObject="{Binding CurrentOperation, UpdateSourceTrigger=PropertyChanged}" x:Name="Operation" SearchBoxVisibility="Collapsed" EnableGrouping="True" Margin="5,0,0,0" syncfusion:SkinStorage.VisualStyle="Metro" BorderBrush="#CC119EDA" LoadingDelay="0" ButtonPanelVisibility="Collapsed" Grid.Column="1"/>
-                    </Grid>
-                </GroupBox>
             </Grid>
         </GroupBox>
+        <GroupBox 
+            Header="{Binding OperationsHeader, FallbackValue=Operations}" 
+            Margin="5,1,5,7" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="3" 
+            Background="#CC0E0606" 
+            Grid.RowSpan="3" Grid.Row="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition
+						Width="2*" />
+                </Grid.ColumnDefinitions>
+                <ListBox 
+                    SelectedIndex="{Binding OperationIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    ItemsSource="{Binding CurrentOperations, UpdateSourceTrigger=PropertyChanged}" 
+                    SelectionMode="Extended" 
+                    BorderThickness="1" 
+                    x:Name="Operations" 
+                    Margin="0,0,13,0" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                    BorderBrush="#CC119EDA" 
+                    SelectionChanged="Operations_SelectionChanged" 
+                    FontSize="11" 
+                    Background="#FF1A2430">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource OperationConverter}">
+                                        <Binding Path="OperID" />
+                                        <Binding Path="Name" />
+                                        <Binding Path="FromVersion" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Clone" Click="CloneOperation"/>
+                            <MenuItem Header="Add" Click="AddOperation"/>
+                            <MenuItem Header="Remove" Click="RemoveOperation"/>
+                            <Separator />
+                            <MenuItem Header="Export" Click="ExportOperation"/>
+                            <MenuItem Header="Import" Click="ImportOperation"/>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
+                <syncfusion:PropertyGrid 
+                    SelectedObject="{Binding CurrentOperation, UpdateSourceTrigger=PropertyChanged}" 
+                    x:Name="Operation" 
+                    SearchBoxVisibility="Collapsed" 
+                    EnableGrouping="True" 
+                    Margin="7,0,0,0" 
+                    syncfusion:VisualStyle="Metro" 
+                    BorderBrush="#CC119EDA" 
+                    LoadingDelay="0" 
+                    ButtonPanelVisibility="Collapsed" 
+                    Background="#FF1A2430" 
+                    Grid.Column="1"
+                    ViewBackgroundColor="#FF1A2430"
+                    LineColor="#0A5694"
+                    TextBlock.Foreground="White"
+                    TextElement.Foreground="White"
+                    CategoryForeground="White"
+                    />
+            </Grid>
+        </GroupBox>
+
+        <conditions:ConditionControl 
+            x:Name="Condition" 
+            BorderBrush="#CC119EDA" 
+            BorderThickness="1" 
+            VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" 
+            Margin="7,4,10,7"
+            Grid.Column="2" 
+            Grid.ColumnSpan="4" 
+            Background="#FF1A2430" MinHeight="85" Grid.RowSpan="2"/>
+
+        <Grid
+			Height="75"
+			VerticalAlignment="Center"
+			Grid.Column="2"
+			Margin="7,0,11,0"
+			Background="#CC0E0606"
+			Grid.ColumnSpan="4" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="180*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="94*"/>
+                <ColumnDefinition Width="496*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38*"/>
+                <RowDefinition Height="37*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name" Margin="2,4,1,6" Foreground="#FFFFFFFF" Grid.Row="1" />
+            <TextBox Text="{Binding CurrentTrigger.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="3,2,3,7"
+                     TextWrapping="Wrap" 
+                     BorderBrush="#CC119EDA" 
+                     Background="#FF1A2430" Grid.Row="1" Grid.Column="1"
+                     />
+
+            <Label Content="ID" Margin="2,6,2,4" Foreground="#FFFFFFFF" />
+            <Controls:NumericUpDown Value="{Binding CurrentTrigger.ID, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,6,3,4" Background="#FF1A2430" BorderBrush="#CC119EDA" Grid.Column="1" />
+            <Controls:ToggleSwitch IsOn ="{Binding CurrentTrigger.Active, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnContent="Yes" OffContent="No" Header="Active" Foreground="#FFFFFFFF" Margin="63,10,0,10" VerticalAlignment="Stretch" Grid.Column="4" Grid.RowSpan="2" Width="78" />
+            <Controls:ToggleSwitch IsOn ="{Binding CurrentTrigger.Run, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnContent="Yes" OffContent="No" Header="Run" Margin="191,10,0,10" Foreground="#FFFFFFFF" VerticalAlignment="Stretch" Grid.Column="4" Grid.RowSpan="2" Width="84" />
+            <Controls:ToggleSwitch IsOn ="{Binding CurrentTrigger.AttackValid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnContent="Yes" OffContent="No" Header="Attack Valid" Margin="327,10,75,10" Foreground="#FFFFFFFF" VerticalAlignment="Stretch" Grid.Column="4" HorizontalAlignment="Stretch" Grid.RowSpan="2" />
+            <Label Content="Version" Margin="0,6,1,4"  Foreground="#FFFFFFFF" RenderTransformOrigin="0.3,0.018" Grid.Column="2"/>
+            <Controls:NumericUpDown Value="{Binding CurrentTrigger.Version, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="2,6,5,4" Background="#FF1A2430" BorderBrush="#CC119EDA" ValueChanged="NumericUpDown_ValueChanged" ValueDecremented="NumericUpDown_ValueDecremented" ValueIncremented="NumericUpDown_ValueIncremented" Maximum="40" Minimum="1" NumericInputMode="Decimal" Grid.Column="3"/>
+        </Grid>
     </Grid>
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>

@@ -8,9 +8,10 @@
     lex:ResxLocalizationProvider.DefaultAssembly="AipolicyEditor"
     lex:ResxLocalizationProvider.DefaultDictionary="Localization"
     lex:LocalizeDictionary.IncludeInvariantCulture="False"
-    Title="AdditionalWin" Height="200" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    Title="AdditionalWin" Height="220" Width="470" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="{lex:Loc RemoveEmptyControllers}" Click="RemoveEmptyControllers" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="274"/>
-        <Button Content="{lex:Loc TranslateUsingOtherFile}" Click="TranslateUsingOtherFile" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="274"/>
+        <Button Content="Remove Empty Controllers" Click="RemoveEmptyControllers" Margin="10,10,16,0" VerticalAlignment="Top"/>
+        <Button Content="Translate Using Other File" Click="TranslateUsingOtherFile" Margin="10,42,16,0" VerticalAlignment="Top"/>
+        <Button Content="Convert all Triggers to the highest version found in the current triggers" Margin="10,74,16,0" VerticalAlignment="Top" Click="ConvertAllTriggersToVersion" IsEnabled="False" />
     </Grid>
 </Controls:MetroWindow>

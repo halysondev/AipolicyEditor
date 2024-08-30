@@ -69,12 +69,12 @@ namespace AipolicyEditor.AIPolicy.Operations
         public void Write(BinaryWriter bw)
         {
             bw.Write(Dst);
-            bw.Write((int)DstType);
+            bw.Write(Convert.ToUInt32(DstType));
             bw.Write(Src1);
-            bw.Write((int)Src1Type);
-            bw.Write((int)Op);
+            bw.Write(Convert.ToUInt32(Src1Type));
+            bw.Write(Convert.ToUInt32(Op));
             bw.Write(Src2);
-            bw.Write((int)Src2Type);
+            bw.Write(Convert.ToUInt32(Src2Type));
             TargetStream.Save(bw, Target);
         }
 

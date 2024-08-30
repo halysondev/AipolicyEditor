@@ -96,7 +96,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
             };
             if (IsCentral)
             {
-                label.Background = Brushes.LightGray;
+                label.Background = Brushes.Black;
             }
             label.MouseEnter += Label_MouseEnter;
             label.MouseLeave += Label_MouseLeave;
@@ -113,8 +113,8 @@ namespace AipolicyEditor.AIPolicy.Conditions
 
         private void Label_MouseLeave(object sender, MouseEventArgs e)
         {
-            (sender as ConditionLabel).Foreground = Brushes.Black;
-            BaseGrid.Background = Brushes.White;
+            (sender as ConditionLabel).Foreground = Brushes.White;
+            BaseGrid.Background = Brushes.Black;
         }
 
         private void Label_MouseEnter(object sender, MouseEventArgs e)

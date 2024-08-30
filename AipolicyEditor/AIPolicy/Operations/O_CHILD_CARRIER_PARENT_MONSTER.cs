@@ -52,7 +52,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public bool Search(string str)
         {
-            if (fRange.ToString().Contains(str))
+            if (fRange.ToString().Contains(str) || iPos.ToString().Contains(str))
                 return true;
             else
                 return false;

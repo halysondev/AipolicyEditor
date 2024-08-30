@@ -47,6 +47,7 @@ namespace AipolicyEditor.AIPolicy
                     OnPropertyChanged("CurrentTriggers");
                     OnPropertyChanged("CurrentController");
                     OnPropertyChanged("TriggersHeader");
+                    OnPropertyChanged("OperationsHeader");
                 }
             }
         }
@@ -86,6 +87,7 @@ namespace AipolicyEditor.AIPolicy
                     _OperationIndex = value;
                     OnPropertyChanged("OperationIndex");
                     OnPropertyChanged("CurrentOperation");
+                    OnPropertyChanged("OperationsHeader");
                 }
             }
         }
@@ -186,7 +188,7 @@ namespace AipolicyEditor.AIPolicy
 
             // Obter o nome do arquivo com extensão
             string fileNameWithExtension = Path.GetFileName(originalPath);
-
+            /*
             // Verifique se o nome do arquivo é "aipolicy.data"
             if (fileNameWithExtension == "aipolicy.data")
             {
@@ -198,6 +200,20 @@ namespace AipolicyEditor.AIPolicy
 
                 return newPath;
             }
+            */
+
+            string backupFileName = "aipolicy.data.bak";
+            string backupPath = Path.Combine(directory, backupFileName);
+
+            // Verifique se o arquivo de backup já existe
+            if (File.Exists(backupPath))
+            {
+                // Se o arquivo de backup já existir, exclua-o
+                File.Delete(backupPath);
+            }
+
+            // Renomear o arquivo original para o arquivo de backup
+            File.Move(originalPath, backupPath);
 
             // Se o nome do arquivo não for o esperado, você pode retornar o original
             // ou lançar uma exceção, dependendo da lógica do seu programa.

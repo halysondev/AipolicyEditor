@@ -52,7 +52,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 		public void Write(BinaryWriter bw)
 		{
 			bw.Write(Value1);
-			bw.Write((int)Value1Type);
+			bw.Write(Convert.ToUInt32(Value1Type));
 			bw.Write(Value3);
 			TargetStream.Save(bw, Target);
 		}

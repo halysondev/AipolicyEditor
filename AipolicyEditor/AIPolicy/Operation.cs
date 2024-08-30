@@ -251,10 +251,10 @@ namespace AipolicyEditor.AIPolicy
                     break;
                 //159
                case 64:
-                    op = new O_64();
+                    op = new O_MASS_ACTIVE_CONTROLLER();
                     break;
                 case 65:
-                   op = new O_65();
+                   op = new O_BOSS_RUSH_AWARD();
                    break;
                 case 66:
                     op = new O_66();

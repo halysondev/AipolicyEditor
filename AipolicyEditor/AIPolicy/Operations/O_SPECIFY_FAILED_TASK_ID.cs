@@ -52,7 +52,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public bool Search(string str)
         {
-            if (iTaskID.ToString().Contains(str))
+            if (iTaskID.ToString().Contains(str) || iTaskIDType.ToString().Contains(str))
                 return true;
             else
                 return false;

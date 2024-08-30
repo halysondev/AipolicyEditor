@@ -66,7 +66,7 @@ namespace AipolicyEditor.AIPolicy.Operations
             bw.Write(MonsterID.Value);
             bw.Write(Range);
             bw.Write(Life);
-            bw.Write((int)DispearCondition);
+            bw.Write(Convert.ToUInt32(DispearCondition));
             bw.Write(PathID);
             bw.Write(MonsterNum);
             TargetStream.Save(bw, Target);

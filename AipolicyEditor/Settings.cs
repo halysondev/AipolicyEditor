@@ -25,6 +25,16 @@ namespace AipolicyEditor
                 Save();
             }
         }
+
+        public static int AuttomaticallyConvertToLastVersion
+        {
+            get => Ini.Sections["GENERAL"].Keys["AuttomaticallyConvertToLastVersion"].Value.ToInt32();
+            set
+            {
+                Ini.Sections["GENERAL"].Keys["AuttomaticallyConvertToLastVersion"].Value = "0";//value.ToString();
+                Save();
+            }
+        }
         public static string ConfigsPath
         {
             get => Ini.Sections["GENERAL"].Keys["ConfigsPath"].Value;

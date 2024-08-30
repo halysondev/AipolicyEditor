@@ -94,15 +94,15 @@ namespace AipolicyEditor.AIPolicy.Operations
 		public void Write(BinaryWriter bw)
 		{
 			bw.Write(Value1);
-			bw.Write((int)Value1Type);
+			bw.Write(Convert.ToUInt32(Value1Type));
 			bw.Write(Value2);
-			bw.Write((int)Value2Type);
+			bw.Write(Convert.ToUInt32(Value2Type));
 			bw.Write(Value3);
-			bw.Write((int)Value3Type);
+			bw.Write(Convert.ToUInt32(Value3Type));
 			bw.Write(Value4);
-			bw.Write((int)Value4Type);
+			bw.Write(Convert.ToUInt32(Value4Type));
 			bw.Write(iTargetID);
-			bw.Write((int)uTargetType);
+			bw.Write(Convert.ToUInt32(uTargetType));
 			TargetStream.Save(bw, Target);
 		}
 

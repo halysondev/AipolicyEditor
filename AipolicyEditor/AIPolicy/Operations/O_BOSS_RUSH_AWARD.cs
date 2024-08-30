@@ -5,7 +5,7 @@ using AipolicyEditor.AIPolicy.Operations.CustomEditors;
 
 namespace AipolicyEditor.AIPolicy.Operations
 {
-	public class O_65 : IOperation, ICloneable
+	public class O_BOSS_RUSH_AWARD : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
@@ -19,24 +19,24 @@ namespace AipolicyEditor.AIPolicy.Operations
         private byte[] bytes = new byte[3];
 
         [LocalizedCategory("OperationParam")]
-		[LocalizedDisplayName("Value1")]
-		public bool Value1 { get; set; }
+		[LocalizedDisplayName("Active")]
+		public bool Active { get; set; }
 
-		[LocalizedDisplayName("Value2")]
+		[LocalizedDisplayName("ItemId_1")]
 		[LocalizedCategory("OperationParam")]
-		public int Value2 { get; set; }
-
-		[LocalizedCategory("OperationParam")]
-		[LocalizedDisplayName("Value3")]
-		public int Value3 { get; set; }
-
-		[LocalizedDisplayName("Value4")]
-		[LocalizedCategory("OperationParam")]
-		public int Value4 { get; set; }
+		public int ItemId_1 { get; set; }
 
 		[LocalizedCategory("OperationParam")]
-		[LocalizedDisplayName("Value5")]
-		public int Value5 { get; set; }
+		[LocalizedDisplayName("Qnt_1")]
+		public int Qnt_1 { get; set; }
+
+		[LocalizedDisplayName("ItemId_2")]
+		[LocalizedCategory("OperationParam")]
+		public int ItemId_2 { get; set; }
+
+		[LocalizedCategory("OperationParam")]
+		[LocalizedDisplayName("Qnt_2")]
+		public int Qnt_2 { get; set; }
 
 		[LocalizedCategory("OperationParam")]
 		[LocalizedDisplayName("zvMin_X")]
@@ -66,14 +66,14 @@ namespace AipolicyEditor.AIPolicy.Operations
 		[LocalizedCategory("TargetParam")]
 		public TargetParam Target { get; set; }
 
-		public O_65()
+		public O_BOSS_RUSH_AWARD()
 		{
-			Value1 = false;
+			Active = false;
 			bytes = new byte[3];
-			Value2 = 0;
-			Value3 = 0;
-			Value4 = 0;
-			Value5 = 0;
+			ItemId_1 = 0;
+			Qnt_1 = 0;
+			ItemId_2 = 0;
+			Qnt_2 = 0;
             zvMin_X = 0;
             zvMin_Y = 0;
             zvMin_Z = 0;
@@ -85,12 +85,12 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public void Read(BinaryReader br)
 		{
-			Value1 = br.ReadBoolean();
+            Active = br.ReadBoolean();
 			bytes = br.ReadBytes(3);
-			Value2 = br.ReadInt32();
-			Value3 = br.ReadInt32();
-			Value4 = br.ReadInt32();
-			Value5 = br.ReadInt32();
+            ItemId_1 = br.ReadInt32();
+            Qnt_1 = br.ReadInt32();
+            ItemId_2 = br.ReadInt32();
+            Qnt_2 = br.ReadInt32();
             zvMin_X = br.ReadSingle();
             zvMin_Y = br.ReadSingle();
             zvMin_Z = br.ReadSingle();
@@ -102,12 +102,12 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public void Write(BinaryWriter bw)
 		{
-			bw.Write(Value1);
+			bw.Write(Active);
 			bw.Write(bytes);
-			bw.Write(Value2);
-			bw.Write(Value3);
-			bw.Write(Value4);
-			bw.Write(Value5);
+			bw.Write(ItemId_1);
+			bw.Write(Qnt_1);
+			bw.Write(ItemId_2);
+			bw.Write(Qnt_2);
 			bw.Write(zvMin_X);
 			bw.Write(zvMin_Y);
 			bw.Write(zvMin_Z);
@@ -119,8 +119,10 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (Value1.ToString().Contains(str) || Value2.ToString().Contains(str) || Value3.ToString().Contains(str))
-			{
+			if (Active.ToString().Contains(str) || ItemId_1.ToString().Contains(str) || ItemId_2.ToString().Contains(str) || Qnt_2.ToString().Contains(str) || 
+				zvMin_X.ToString().Contains(str) || zvMin_Y.ToString().Contains(str) || zvMin_Z.ToString().Contains(str) || zvMax_X.ToString().Contains(str) ||
+                zvMax_Y.ToString().Contains(str) || zvMax_Z.ToString().Contains(str) || Qnt_1.ToString().Contains(str))
+            {
 				return true;
 			}
 			return false;
@@ -128,14 +130,20 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public object Clone()
 		{
-			return new O_65
-			{
-				Value1 = Value1,
-				Value2 = Value2,
-				Value3 = Value3,
-				Value4 = Value4,
-				Value5 = Value5,
-				Target = (Target.Clone() as TargetParam)
+			return new O_BOSS_RUSH_AWARD
+            {
+                Active = Active,
+                ItemId_1 = ItemId_1,
+                Qnt_1 = Qnt_1,
+                ItemId_2 = ItemId_2,
+                Qnt_2 = Qnt_2,
+                zvMin_X = zvMin_X,
+                zvMin_Y = zvMin_Y,
+                zvMin_Z = zvMin_Z,
+                zvMax_X = zvMax_X,
+                zvMax_Y = zvMax_Y,
+                zvMax_Z = zvMax_Z,
+                Target = (Target.Clone() as TargetParam)
 			};
 		}
 	}

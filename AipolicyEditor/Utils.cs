@@ -6,6 +6,10 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using WPFLocalizeExtension.Engine;
+using Markdig;
+using Markdig.Wpf;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace AipolicyEditor
 {
@@ -17,13 +21,46 @@ namespace AipolicyEditor
             GC.WaitForPendingFinalizers();
         }
 
-        public static void ShowMessage(string message, string title = "AipolicyEditor")
+        public static void ShowMessage(string message, string title = "AipolicyEditor", bool isMarkdown = false)
         {
-            ((MetroWindow)Application.Current.MainWindow).ShowMessageAsync(title, message, MessageDialogStyle.Affirmative,
-            new MetroDialogSettings()
+            if (isMarkdown)
             {
-                AffirmativeButtonText = "Ok"
-            });
+                // Create a MarkdownViewer to display Markdown content
+                var markdownViewer = new MarkdownViewer
+                {
+                    Markdown = message,
+                    Background = Brushes.White
+                };
+
+                var scrollViewer = new ScrollViewer
+                {
+                    Content = markdownViewer,
+                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+                    Background = Brushes.White
+                };
+
+                var window = new MetroWindow
+                {
+                    Title = title,
+                    Height = 757,
+                    Width = 513,
+                    Content = scrollViewer,
+                    Background = Brushes.White,
+                    Foreground = Brushes.Black,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                };
+
+                window.ShowDialog();
+            }
+            else
+            {
+                ((MetroWindow)Application.Current.MainWindow).ShowMessageAsync(title, message, MessageDialogStyle.Affirmative,
+                new MetroDialogSettings()
+                {
+                    AffirmativeButtonText = "Ok"
+                });
+            }
         }
 
         public static List<uint> GetMask(uint value)

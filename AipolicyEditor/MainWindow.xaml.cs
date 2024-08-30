@@ -142,9 +142,36 @@ namespace AipolicyEditor
             }
         }
 
+        private void AutoConvert(object sender, RoutedEventArgs e)
+        {
+            // Encontrar a maior versão entre todos os triggers
+            int maxVersion = Aipolicy.Controllers
+                .SelectMany(controller => controller.Triggers)
+                .Max(trigger => trigger.Version);
+
+            // Atualizar todos os triggers para a maior versão encontrada
+            foreach (var controller in Aipolicy.Controllers)
+            {
+                foreach (var trigger in controller.Triggers)
+                {
+                    trigger.Version = maxVersion;
+                }
+            }
+
+            Aipolicy.Save();
+        }
+
         private void Save(object sender, RoutedEventArgs e)
         {
-            Aipolicy.Save();
+            //if(Settings.AuttomaticallyConvertToLastVersion == 1)
+            //{
+            //    AutoConvert(sender, e);
+            //}
+            //else
+            //{
+                Aipolicy.Save();
+            //}
+            
         }
 
         private void SaveAs(object sender, RoutedEventArgs e)
@@ -180,19 +207,41 @@ namespace AipolicyEditor
                 Aipolicy = Aipolicy
             }.ShowDialog();
         }
-
+        //https://github.com/halysondev/AipolicyEditor
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            Utils.ShowMessage($"Aipolicy.data editor\n" +
-                $"Powered by Kn1fe-Zone.Ru\n" +
-                $"Authors:\n" +
-                $"Kn1fe\n" +
-                $"Nes\n" +
-                $"© 2018\n" +
-                $"Updated by Haly and xDarK - Brazil\n" +
-                $"2023");
+            string message =
+                "Aipolicy.data Editor\n" +
+                "GitHub: https://github.com/halysondev/AipolicyEditor\n" +
+                "--------- Updated --------\n" +
+                "Haly\n" +
+                "© 2023-2024\n" +
+                "--------- Contributors --------\n" +
+                "Titan \n" +
+                "Kleber Tomaz \n" +
+                "Fulano \n" +
+                "xDarK \n" +
+                "--------- Created By --------\n" +
+                "Kn1fe\n" +
+                "Nes\n" +
+                "© 2018\n" +
+                "--------- Libraries --------\n" +
+                "RodySoft (UdE API)\n" +
+                "mbdavid (MadMilkman.Ini)\n" +
+                "MahApps (MahApps.Metro, MahApps.Metro.IconsPacks)\n" +
+                "SyncFusion\n" +
+                "XAMLMarkupExtensions\n" +
+                "WPFLocalizeExtension\n" +
+                "zlib (Jean-loup Gailly and Mark Adler)\n" +
+                "-----------------";
+
+            // Display the message
+            Utils.ShowMessage(message, "Aipolicy Editor", false);
         }
 
+
+
+        //https://github.com/halysondev/AipolicyEditor
         #region Controllers
         private void Controllers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -204,11 +253,24 @@ namespace AipolicyEditor
 
         private void CloneController(object sender, RoutedEventArgs e)
         {
-            if (Aipolicy.ControllerIndex > -1)
+            var selectedItems = Controllers.SelectedItems;
+
+            foreach (var item in selectedItems)
             {
-                Aipolicy.Controllers.Add(Aipolicy.CurrentController.Clone() as CPolicyData);
+                if (item is CPolicyData controller)
+                {;
+                    var clonedController = controller.Clone() as CPolicyData;
+                    if (clonedController != null)
+                    {
+                        // Definir o novo ID do controlador clonado
+                        clonedController.ID = Aipolicy.Controllers.Count > 0 ? Aipolicy.Controllers.Last().ID + 1 : 1;
+                        Aipolicy.Controllers.Add(clonedController);
+                    }
+
+                }
             }
         }
+
 
         private void AddController(object sender, RoutedEventArgs e)
         {
@@ -222,11 +284,14 @@ namespace AipolicyEditor
 
         private void RemoveController(object sender, RoutedEventArgs e)
         {
-            if (Controllers.SelectedIndex > -1)
+            var selectedItems = Controllers.SelectedItems.Cast<CPolicyData>().ToList();
+
+            foreach (var item in selectedItems)
             {
-                Aipolicy.Controllers.RemoveAt(Controllers.SelectedIndex);
+                Aipolicy.Controllers.Remove(item);
             }
         }
+
 
         private void ExportController(object sender, RoutedEventArgs e)
         {
@@ -282,15 +347,28 @@ namespace AipolicyEditor
             {
                 Dispatcher.Invoke(new Action(() => Condition.Cond = Aipolicy.CurrentTrigger.RootConditon));
             }
+
+            Aipolicy.OnPropertyChanged("TriggerIndex");
+            Aipolicy.OnPropertyChanged("CurrentTrigger");
+            Aipolicy.OnPropertyChanged("CurrentOperations");
+            Aipolicy.OnPropertyChanged("OperationsHeader");
         }
 
         private void CloneTrigger(object sender, RoutedEventArgs e)
         {
-            if (Aipolicy.TriggerIndex > -1)
+            var selectedItems = Triggers.SelectedItems.Cast<CTriggerData>().ToList();
+
+            foreach (var item in selectedItems)
             {
-                Aipolicy.CurrentTriggers.Add(Aipolicy.CurrentTrigger.Clone() as CTriggerData);
+                var clonedTrigger = item.Clone() as CTriggerData;
+                if (clonedTrigger != null)
+                {
+                    clonedTrigger.ID = Aipolicy.CurrentTriggers.Count > 0 ? Aipolicy.CurrentTriggers.Last().ID + 1 : 0;
+                    Aipolicy.CurrentTriggers.Add(clonedTrigger);
+                }
             }
         }
+
 
         private void AddTrigger(object sender, RoutedEventArgs e)
         {
@@ -304,9 +382,11 @@ namespace AipolicyEditor
 
         private void RemoveTrigger(object sender, RoutedEventArgs e)
         {
-            if (Triggers.SelectedIndex > -1)
+            var selectedItems = Triggers.SelectedItems.Cast<CTriggerData>().ToList();
+
+            foreach (var item in selectedItems)
             {
-                Aipolicy.CurrentTriggers.RemoveAt(Triggers.SelectedIndex);
+                Aipolicy.CurrentTriggers.Remove(item);
             }
         }
 
@@ -364,25 +444,37 @@ namespace AipolicyEditor
 
         private void CloneOperation(object sender, RoutedEventArgs e)
         {
-            if (Aipolicy.OperationIndex > -1)
+            var selectedItems = Operations.SelectedItems.Cast<IOperation>().ToList();
+
+            foreach (var item in selectedItems)
             {
-                Aipolicy.CurrentOperations.Add((Aipolicy.CurrentOperation as ICloneable).Clone() as IOperation);
+                Aipolicy.CurrentOperations.Add((item as ICloneable).Clone() as IOperation);
             }
         }
+
 
         private void AddOperation(object sender, RoutedEventArgs e)
         {
             OperationSelector os = new OperationSelector(Aipolicy.CurrentTrigger.Version);
             os.ShowDialog();
             if (os.Op != null)
+            {
+                Aipolicy.CurrentTrigger.Version = os.GetUpdatedVersion();
                 Aipolicy.CurrentTrigger.Operations.Add(os.Op);
+                Aipolicy.OnPropertyChanged("TriggerIndex");
+                Aipolicy.OnPropertyChanged("CurrentTrigger");
+                Aipolicy.OnPropertyChanged("CurrentOperations");
+                Aipolicy.OnPropertyChanged("OperationsHeader");
+            }
         }
 
         private void RemoveOperation(object sender, RoutedEventArgs e)
         {
-            if (Operations.SelectedIndex > -1)
+            var selectedItems = Operations.SelectedItems.Cast<IOperation>().ToList();
+
+            foreach (var item in selectedItems)
             {
-                Aipolicy.CurrentTrigger.Operations.RemoveAt(Operations.SelectedIndex);
+                Aipolicy.CurrentTrigger.Operations.Remove(item);
             }
         }
 
@@ -433,5 +525,29 @@ namespace AipolicyEditor
             }
         }
         #endregion
+
+        private void NumericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double?> e)
+        {
+            Aipolicy.OnPropertyChanged("TriggerIndex");
+            Aipolicy.OnPropertyChanged("CurrentTrigger");
+            Aipolicy.OnPropertyChanged("CurrentOperations");
+            Aipolicy.OnPropertyChanged("OperationsHeader");
+        }
+
+        private void NumericUpDown_ValueDecremented(object sender, NumericUpDownChangedRoutedEventArgs args)
+        {
+            Aipolicy.OnPropertyChanged("TriggerIndex");
+            Aipolicy.OnPropertyChanged("CurrentTrigger");
+            Aipolicy.OnPropertyChanged("CurrentOperations");
+            Aipolicy.OnPropertyChanged("OperationsHeader");
+        }
+
+        private void NumericUpDown_ValueIncremented(object sender, NumericUpDownChangedRoutedEventArgs args)
+        {
+            Aipolicy.OnPropertyChanged("TriggerIndex");
+            Aipolicy.OnPropertyChanged("CurrentTrigger");
+            Aipolicy.OnPropertyChanged("CurrentOperations");
+            Aipolicy.OnPropertyChanged("OperationsHeader");
+        }
     }
 }

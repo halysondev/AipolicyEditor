@@ -10,13 +10,16 @@ namespace AipolicyEditor.AIPolicy.Operations
         private List<IOperation> Ops { get; set; } = new List<IOperation>();
         public IOperation Op { get; set; }
 
+        public int CurrentVersion { get; private set; }
+
         public OperationSelector(int version)
         {
             InitializeComponent();
+            CurrentVersion = version; // Initialize CurrentVersion with the passed version
             for (int i = 0; i < 107; ++i)
             {
                 IOperation op = Operation.Read(null, version, i);
-                if (op.FromVersion <= version)
+                if (op != null)
                 {
                     Ops.Add(op);
                 }
@@ -30,8 +33,20 @@ namespace AipolicyEditor.AIPolicy.Operations
         private void SelectionClick(object sender, RoutedEventArgs e)
         {
             if (Operations.SelectedIndex > -1)
+            {
                 Op = Ops[Operations.SelectedIndex];
-            Close();
+                // Only update the version if the selected operation's version is greater than the current version
+                if (Op.FromVersion > CurrentVersion)
+                {
+                    CurrentVersion = Op.FromVersion;
+                }
+                Close();
+            }
+        }
+
+        public int GetUpdatedVersion()
+        {
+            return CurrentVersion;
         }
     }
 }

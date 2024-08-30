@@ -87,7 +87,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public bool Search(string str)
         {
-            if (iTargetID.ToString().Contains(str) || uTargetType.ToString().Contains(str))
+            if (iTargetID.ToString().Contains(str) || uTargetType.ToString().Contains(str) || MinX.ToString().Contains(str) || MinY.ToString().Contains(str) || MinZ.ToString().Contains(str) || MaxX.ToString().Contains(str) || MaxY.ToString().Contains(str) || MaxZ.ToString().Contains(str))
                 return true;
             else
                 return false;

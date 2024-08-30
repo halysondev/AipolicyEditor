@@ -7,7 +7,9 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.ComponentModel;
 using WPFLocalizeExtension.Extensions;
+using System.Windows.Input;
 
 namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
 {
@@ -85,6 +87,16 @@ namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
         public void Detach(PropertyViewItem property)
         {
 
+        }
+
+        public object Create(PropertyDescriptor PropertyInfo)
+        {
+            return null;
+        }
+
+        public bool ShouldPropertyGridTryToHandleKeyDown(Key key)
+        {
+            return false;
         }
     }
 }

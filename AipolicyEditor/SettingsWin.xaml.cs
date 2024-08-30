@@ -24,6 +24,14 @@ namespace AipolicyEditor
             Language.SelectedItem = Settings.Language;
             Configs.Text = Settings.ConfigsPath;
             Elements.Text = Settings.ElementsPath;
+            if(Settings.AuttomaticallyConvertToLastVersion == 1)
+            {
+                AutomaticConvertToLastVersionTrigger.IsChecked = true;
+            }
+            else
+            {
+                AutomaticConvertToLastVersionTrigger.IsChecked = false;
+            }
         }
 
         private void ConfigsSelectClick(object sender, RoutedEventArgs e)
@@ -54,10 +62,22 @@ namespace AipolicyEditor
                     Settings.ConditionType = 1;
                 else
                     Settings.ConditionType = 0;
+
+                if (AutomaticConvertToLastVersionTrigger.IsChecked == true)
+                {
+                    Settings.AuttomaticallyConvertToLastVersion = 1;
+                }
+                else
+                {
+                    Settings.AuttomaticallyConvertToLastVersion = 0;
+                }
+
                 if (Settings.ConfigsPath != Configs.Text || Settings.ElementsPath != Elements.Text)
                 {
                     Reload(null, null);
                 }
+
+                
             }
             Close();
         }

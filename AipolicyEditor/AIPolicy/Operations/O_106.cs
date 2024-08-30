@@ -206,7 +206,7 @@ namespace AipolicyEditor.AIPolicy.Operations
             //data = data.Append((System.Byte)0).ToArray();
             bw.Write(data.Length);
             bw.Write(data);
-            bw.Write((uint)uAppendDataMask);
+            bw.Write(Convert.ToUInt32(uAppendDataMask));
             bw.Write(Value1);
 			bw.Write(Value2);
 			bw.Write(Value3);

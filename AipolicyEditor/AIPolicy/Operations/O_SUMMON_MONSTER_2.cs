@@ -78,7 +78,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public void Write(BinaryWriter bw)
         {
-            bw.Write((int)DispearCondition);
+            bw.Write(Convert.ToUInt32(DispearCondition));
             bw.Write(MonsterID.Value);
             bw.Write(MonsterIDType);
             bw.Write(Range);

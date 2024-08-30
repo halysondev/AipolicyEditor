@@ -157,7 +157,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public bool Search(string str)
         {
-            if (iStyle.ToString().Contains(str))
+            if (iStyle.ToString().Contains(str) || iVoteID0.ToString().Contains(str) || iSelect0.ToString().Contains(str) || iVoteID1.ToString().Contains(str) || iSelect1.ToString().Contains(str) || iVoteID2.ToString().Contains(str) || iSelect2.ToString().Contains(str) || iVoteID3.ToString().Contains(str) || iSelect3.ToString().Contains(str) || iVoteID4.ToString().Contains(str) || iSelect4.ToString().Contains(str) || iVoteID5.ToString().Contains(str) || iSelect5.ToString().Contains(str) || iVoteID6.ToString().Contains(str) || iSelect6.ToString().Contains(str) || iVoteID7.ToString().Contains(str) || iSelect7.ToString().Contains(str))
             {
                 return true;
             }

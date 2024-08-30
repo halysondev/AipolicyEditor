@@ -80,5 +80,24 @@ namespace AipolicyEditor
             }
             Utils.ShowMessage($"{MainWindow.Provider.GetLocalizedString("TranslateUsingOtherFileCount")}: {count}");
         }
+
+        private void ConvertAllTriggersToVersion(object sender, RoutedEventArgs e)
+        {
+            // Encontrar a maior versão entre todos os triggers
+            int maxVersion = Aipolicy.Controllers
+                .SelectMany(controller => controller.Triggers)
+                .Max(trigger => trigger.Version);
+
+            // Atualizar todos os triggers para a maior versão encontrada
+            foreach (var controller in Aipolicy.Controllers)
+            {
+                foreach (var trigger in controller.Triggers)
+                {
+                    trigger.Version = maxVersion;
+                }
+            }
+
+            Utils.ShowMessage($"Converted All Triggers to Version: {maxVersion}");
+        }
     }
 }

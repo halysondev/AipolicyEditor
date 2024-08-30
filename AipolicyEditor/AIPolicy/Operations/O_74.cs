@@ -144,9 +144,9 @@ namespace AipolicyEditor.AIPolicy.Operations
             bw.Write(ID6Type);
             bw.Write(Value2);
 			bw.Write(uSkill);
-			bw.Write((int)uSkillType);
+			bw.Write(Convert.ToUInt32(uSkillType));
 			bw.Write(uLevel);
-			bw.Write((int)uLevelType);
+			bw.Write(Convert.ToUInt32(uLevelType));
 			TargetStream.Save(bw, Target);
 		}
 

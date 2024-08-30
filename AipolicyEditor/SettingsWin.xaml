@@ -12,16 +12,31 @@
         lex:ResxLocalizationProvider.DefaultAssembly="AipolicyEditor"
         lex:ResxLocalizationProvider.DefaultDictionary="Localization"
         lex:LocalizeDictionary.IncludeInvariantCulture="False"
-        Title="SettingsWin" Height="250" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="SettingsWin" Height="349" Width="547" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ComboBox Name="Language" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="334"/>
-        <Label Content="{lex:Loc Language}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="135"/>
-        <Button Content="{lex:Loc Save}" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Width="474" Click="SaveClick"/>
-        <CheckBox Name="Type" Content="{lex:Loc UseTextForSym}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="474"/>
-        <Button Content="Configs.pck" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="95" Click="ConfigsSelectClick"/>
-        <TextBox Name="Configs" HorizontalAlignment="Left" Height="23" Margin="110,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
-        <Button Content="Elements.data" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="95" Click="ElementsSelectClick"/>
-        <TextBox Name="Elements" HorizontalAlignment="Left" Height="23" Margin="110,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
-        <Button Content="{lex:Loc Reload}" HorizontalAlignment="Left" Margin="380,127,0,0" VerticalAlignment="Top" Width="104" Click="Reload"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="258*"/>
+            <ColumnDefinition Width="135*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Name="Language" Margin="43,10,16,8" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Language" Margin="10,10,220,0" VerticalAlignment="Top" Height="26" Grid.ColumnSpan="2"/>
+        <Button Content="Save" Margin="10,10,16,10" Click="SaveClick" Grid.Row="6" Grid.ColumnSpan="3"/>
+        <CheckBox Name="Type" Content="Replace mathematical symbol with text (like + = 'PLUS')" Margin="10,2,16,4" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <Button Content="Configs.pck" Margin="10,6,2,11" Click="ConfigsSelectClick" Grid.Row="2"/>
+        <TextBox Name="Configs" Margin="3,4,16,11" TextWrapping="Wrap" Text="" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Content="Elements.data" Margin="10,8,2,8" Click="ElementsSelectClick" Grid.Row="3"/>
+        <TextBox Name="Elements" Height="23" Margin="3,0,16,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Content="Reload" Margin="15,3,16,2" Click="Reload" Grid.Row="4" Grid.Column="2"/>
+        <CheckBox Name="AutomaticConvertToLastVersionTrigger" Content="Convert all Triggers to the highest version found in the current triggers, before saving the file" Margin="10,8,10,11" Grid.Row="5" Grid.ColumnSpan="3" IsEnabled="False" Visibility="Visible"/>
     </Grid>
 </Controls:MetroWindow>

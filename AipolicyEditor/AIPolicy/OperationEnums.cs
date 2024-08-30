@@ -9,7 +9,8 @@
         Instance = 4,
         System = 5,
         InstanceCenterScreen = 6,
-        Whisper = 7
+        Whisper = 7,
+        Num
     }
 
     public enum TalkTextAppendDataMask : uint
@@ -20,14 +21,16 @@
         LocalVar1 = 4,
         LocalVar2 = 8,
         TalkingName = 0x10,
-        ADM6 = 0x20
+        ADM6 = 0x20,
+        Num
     }
 
     public enum FactionPVPPointType : uint
     {
         MineCar = 0,
         MineBase = 1,
-        MineCarArrived = 2
+        MineCarArrived = 2,
+        Num
     }
 
     public enum OperatorType : uint

@@ -38,7 +38,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public void Write(BinaryWriter bw)
         {
-            bw.Write((uint)Type);
+            bw.Write(Convert.ToUInt32(Type));
             TargetStream.Save(bw, Target);
         }
 

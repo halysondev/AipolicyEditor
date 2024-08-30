@@ -93,7 +93,8 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public bool Search(string str)
         {
-            if (iTaskID.ToString().Contains(str))
+            if (iTaskID.ToString().Contains(str) || iTaskIDType.ToString().Contains(str) || zvMinx.ToString().Contains(str) || zvMiny.ToString().Contains(str) 
+                || zvMinz.ToString().Contains(str) || zvMaxx.ToString().Contains(str) || zvMaxy.ToString().Contains(str) || zvMaxz.ToString().Contains(str) )
                 return true;
             else
                 return false;

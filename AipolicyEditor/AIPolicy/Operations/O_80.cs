@@ -74,7 +74,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 			bw.Write(posZ);
 			bw.Write(Const);
 			bw.Write(Var);
-			bw.Write((int)VarType);
+			bw.Write(Convert.ToUInt32(VarType));
 			TargetStream.Save(bw, Target);
 		}
 

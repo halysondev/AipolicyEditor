@@ -21,19 +21,19 @@ namespace AipolicyEditor.AIPolicy.Operations
         public uint uID { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iIDType")]
-        public int iIDType { get; set; }
+        public VarType iIDType { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("uPeriod")]
         public uint uPeriod { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iPeriodType")]
-        public int iPeriodType { get; set; }
+        public VarType iPeriodType { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("uCounter")]
         public uint uCounter { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iCounterType")]
-        public int iCounterType { get; set; }
+        public VarType iCounterType { get; set; }
         // Target param
         [LocalizedCategory("TargetParam")]
         [LocalizedDisplayName("Target")]
@@ -53,22 +53,22 @@ namespace AipolicyEditor.AIPolicy.Operations
         public void Read(BinaryReader br)
         {
             uID = br.ReadUInt32();
-            iIDType = br.ReadInt32();
+            iIDType = (VarType)br.ReadInt32();
             uPeriod = br.ReadUInt32();
-            iPeriodType = br.ReadInt32();
+            iPeriodType = (VarType)br.ReadInt32();
             uCounter = br.ReadUInt32();
-            iCounterType = br.ReadInt32();
+            iCounterType = (VarType)br.ReadInt32();
             Target = TargetStream.Read(br);
         }
 
         public void Write(BinaryWriter bw)
         {
             bw.Write(uID);
-            bw.Write(iIDType);
+            bw.Write(Convert.ToUInt32(iIDType));
             bw.Write(uPeriod);
-            bw.Write(iPeriodType);
+            bw.Write(Convert.ToUInt32(iPeriodType));
             bw.Write(uCounter);
-            bw.Write(iCounterType);
+            bw.Write(Convert.ToUInt32(iCounterType));
             TargetStream.Save(bw, Target);
         }
 

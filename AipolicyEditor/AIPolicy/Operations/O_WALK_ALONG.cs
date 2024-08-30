@@ -55,8 +55,8 @@ namespace AipolicyEditor.AIPolicy.Operations
         {
             bw.Write(WorldID);
             bw.Write(PathID);
-            bw.Write((int)PatrolType);
-            bw.Write((int)SpeedType);
+            bw.Write(Convert.ToUInt32(PatrolType));
+            bw.Write(Convert.ToUInt32(SpeedType));
             TargetStream.Save(bw, Target);
         }
 

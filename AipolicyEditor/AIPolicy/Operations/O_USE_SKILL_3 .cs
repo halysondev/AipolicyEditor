@@ -78,7 +78,8 @@ namespace AipolicyEditor.AIPolicy.Operations
         public bool Search(string str)
         {
             if (Skill.Value.ToString().Contains(str) || SkillType.ToString().Contains(str) ||
-                Level.ToString().Contains(str) || LevelType.ToString().Contains(str))
+                Level.ToString().Contains(str) || LevelType.ToString().Contains(str)
+                || tmpID.ToString().Contains(str) || life.ToString().Contains(str))
                 return true;
             else
                 return false;

@@ -84,22 +84,20 @@ namespace AipolicyEditor
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            uint returnValue = 0;
-            if (parameter is Type)
+            if (value != null && parameter is Type enumType && Enum.IsDefined(enumType, value))
             {
-                returnValue = (uint)Enum.Parse((Type)parameter, value.ToString());
+                return System.Convert.ToUInt32(value);
             }
-            return returnValue;
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Enum enumValue = default(Enum);
-            if (parameter is Type)
+            if (value is uint uintValue && parameter is Type enumType)
             {
-                enumValue = (Enum)Enum.Parse((Type)parameter, value.ToString());
+                return Enum.ToObject(enumType, uintValue);
             }
-            return enumValue;
+            return value;
         }
     }
 

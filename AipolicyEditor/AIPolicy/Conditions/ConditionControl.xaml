@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         d:DesignHeight="10" d:DesignWidth="300">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
-        <Border BorderBrush="LightBlue" BorderThickness="0.7">
-            <WrapPanel Name="BaseGrid" Orientation="Horizontal" Width="auto" Height="auto" Background="White"/>
+        <Border BorderBrush="#FFADD8E6" BorderThickness="0.7">
+            <WrapPanel Name="BaseGrid" Orientation="Horizontal" Width="auto" Height="auto" Background="Black"/>
         </Border>
     </ScrollViewer>
 </UserControl>

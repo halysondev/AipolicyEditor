@@ -87,60 +87,63 @@ namespace AipolicyEditor.AIPolicy
                     Utils.MemoryCleaner();
                 }
             }
-            if (File.Exists(Settings.ElementsPath))
+            if(!UdE.API.IsElementsEditorRunning)
             {
-                if (Cache.CollectionExists("Npcs"))
-                    Cache.DropCollection("Npcs");
-                if (Cache.CollectionExists("Mobs"))
-                    Cache.DropCollection("Mobs");
-                if (Cache.CollectionExists("Mines"))
-                    Cache.DropCollection("Mines");
-                var col1 = Cache.GetCollection<CustomDataCollection>("Npcs");
-                var col2 = Cache.GetCollection<CustomDataCollection>("Mobs");
-                var col3 = Cache.GetCollection<CustomDataCollection>("Mines");
-                KuklusDataEditor.Core.ElementsData elements = new KuklusDataEditor.Core.ElementsData();
-                try
+                if (File.Exists(Settings.ElementsPath))
                 {
-                    elements.Load(Settings.ElementsPath);
-                }
-                catch { }
-                byte list_count = 0;
-                foreach (var list in elements.Lists)
-                {
-                    if (list_count == 3)
-                        break;
-                    if (list.Name.Contains("NPC_ESSENCE") ||
-                        list.Name.Contains("MONSTER_ESSENCE") ||
-                        list.Name.Contains("MINE_ESSENCE"))
+                    if (Cache.CollectionExists("Npcs"))
+                        Cache.DropCollection("Npcs");
+                    if (Cache.CollectionExists("Mobs"))
+                        Cache.DropCollection("Mobs");
+                    if (Cache.CollectionExists("Mines"))
+                        Cache.DropCollection("Mines");
+                    var col1 = Cache.GetCollection<CustomDataCollection>("Npcs");
+                    var col2 = Cache.GetCollection<CustomDataCollection>("Mobs");
+                    var col3 = Cache.GetCollection<CustomDataCollection>("Mines");
+                    KuklusDataEditor.Core.ElementsData elements = new KuklusDataEditor.Core.ElementsData();
+                    try
                     {
-                        foreach (var item in list.Items)
-                        {
-                            int id = item.Values[list.IDIndex].ToString().ToInt32();
-                            string name = item.Values[list.NameIndex].ToString();
-                            var data = new CustomDataCollection()
-                            {
-                                ID = id,
-                                Name = name,
-                                Desc = ""
-                            };
-                            if (list.Name.Contains("NPC_ESSENCE"))
-                            {
-                                col1.Insert(data);
-                            }
-                            else if (list.Name.Contains("MONSTER_ESSENCE"))
-                            {
-                                col2.Insert(data);
-                            }
-                            else if (list.Name.Contains("MINE_ESSENCE"))
-                            {
-                                col3.Insert(data);
-                            }
-                        }
-                        ++list_count;
+                        elements.Load(Settings.ElementsPath);
                     }
+                    catch { }
+                    byte list_count = 0;
+                    foreach (var list in elements.Lists)
+                    {
+                        if (list_count == 3)
+                            break;
+                        if (list.Name.Contains("NPC_ESSENCE") ||
+                            list.Name.Contains("MONSTER_ESSENCE") ||
+                            list.Name.Contains("MINE_ESSENCE"))
+                        {
+                            foreach (var item in list.Items)
+                            {
+                                int id = item.Values[list.IDIndex].ToString().ToInt32();
+                                string name = item.Values[list.NameIndex].ToString();
+                                var data = new CustomDataCollection()
+                                {
+                                    ID = id,
+                                    Name = name,
+                                    Desc = ""
+                                };
+                                if (list.Name.Contains("NPC_ESSENCE"))
+                                {
+                                    col1.Insert(data);
+                                }
+                                else if (list.Name.Contains("MONSTER_ESSENCE"))
+                                {
+                                    col2.Insert(data);
+                                }
+                                else if (list.Name.Contains("MINE_ESSENCE"))
+                                {
+                                    col3.Insert(data);
+                                }
+                            }
+                            ++list_count;
+                        }
+                    }
+                    elements.Lists.Clear();
+                    Utils.MemoryCleaner();
                 }
-                elements.Lists.Clear();
-                Utils.MemoryCleaner();
             }
         }
 
@@ -158,8 +161,29 @@ namespace AipolicyEditor.AIPolicy
 
         public static string GetNpcName(int id)
         {
-            var data = Npcs.Where(x => x.ID == id).ToList();
-            return data.Count > 0 ? data.First().Name : "Unknown";
+            string result;
+            if (UdE.API.IsElementsEditorRunning)
+            {
+                if (id != 0)
+                {
+                    try
+                    {
+                        result = UdE.API.GetItemNameByID(UdE.ItemType.NpcOrMobOrMine, id);
+                    }
+                    catch
+                    {
+                        result = "Unknown";
+                    }
+                }
+                else
+                    result = "Unknown";
+            }
+            else
+            {
+                var data = Npcs.Where(x => x.ID == id).ToList();
+                return data.Count > 0 ? data.First().Name : "Unknown";
+            }
+            return result;
         }
 
         public static string GetNpcDesc(int id)
@@ -170,8 +194,29 @@ namespace AipolicyEditor.AIPolicy
 
         public static string GetMobName(int id)
         {
-            var data = Mobs.Where(x => x.ID == id).ToList();
-            return data.Count > 0 ? data.First().Name : "Unknown";
+            string result;
+            if (UdE.API.IsElementsEditorRunning)
+            {
+                if (id != 0)
+                {
+                    try
+                    {
+                        result = UdE.API.GetItemNameByID(UdE.ItemType.NpcOrMobOrMine, id);
+                    }
+                    catch
+                    {
+                        result = "Unknown";
+                    }
+                }
+                else
+                    result = "Unknown";
+            }
+            else
+            {
+                var data = Mobs.Where(x => x.ID == id).ToList();
+                return data.Count > 0 ? data.First().Name : "Unknown";
+            }
+            return result;
         }
 
         public static string GetMobDesc(int id)
@@ -182,8 +227,29 @@ namespace AipolicyEditor.AIPolicy
 
         public static string GetMineName(int id)
         {
-            var data = Mines.Where(x => x.ID == id).ToList();
-            return data.Count > 0 ? data.First().Name : "Unknown";
+            string result;
+            if (UdE.API.IsElementsEditorRunning)
+            {
+                if (id != 0)
+                {
+                    try
+                    {
+                        result = UdE.API.GetItemNameByID(UdE.ItemType.NpcOrMobOrMine, id);
+                    }
+                    catch
+                    {
+                        result = "Unknown";
+                    }
+                }
+                else
+                    result = "Unknown";
+            }
+            else
+            {
+                var data = Mines.Where(x => x.ID == id).ToList();
+                return data.Count > 0 ? data.First().Name : "Unknown";
+            }
+            return result;
         }
 
         public static string GetMineDesc(int id)

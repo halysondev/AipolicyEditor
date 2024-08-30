@@ -42,7 +42,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
             get
             {
                 string[] fields = Conditions.GetFileds(C.ID);
-                if (fields.Length > 1)
+                if (fields.Length > 2)
                     return fields[2];
                 else
                     return "";
@@ -54,7 +54,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
             get
             {
                 string[] fields = Conditions.GetFileds(C.ID);
-                if (fields.Length > 1)
+                if (fields.Length > 3)
                     return fields[3];
                 else
                     return "";
@@ -66,7 +66,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
             get
             {
                 string[] fields = Conditions.GetFileds(C.ID);
-                if (fields.Length > 1)
+                if (fields.Length > 4)
                     return fields[4];
                 else
                     return "";
@@ -78,7 +78,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
             get
             {
                 string[] fields = Conditions.GetFileds(C.ID);
-                if (fields.Length > 1)
+                if (fields.Length > 5)
                     return fields[5];
                 else
                     return "";
@@ -123,11 +123,11 @@ namespace AipolicyEditor.AIPolicy.Conditions
         {
             get
             {
-                return C.Value.Length > 1 ? C.Value[2] : "";
+                return C.Value.Length > 2 ? C.Value[2] : "";
             }
             set
             {
-                if (C.Value.Length > 1 && C.Value[2] != value)
+                if (C.Value.Length > 2 && C.Value[2] != value)
                 {
                     C.Value[2] = value;
                     OnPropertyChanged("Param3");
@@ -140,11 +140,11 @@ namespace AipolicyEditor.AIPolicy.Conditions
         {
             get
             {
-                return C.Value.Length > 1 ? C.Value[3] : "";
+                return C.Value.Length > 3 ? C.Value[3] : "";
             }
             set
             {
-                if (C.Value.Length > 1 && C.Value[3] != value)
+                if (C.Value.Length > 3 && C.Value[3] != value)
                 {
                     C.Value[2] = value;
                     OnPropertyChanged("Param4");
@@ -157,11 +157,11 @@ namespace AipolicyEditor.AIPolicy.Conditions
         {
             get
             {
-                return C.Value.Length > 1 ? C.Value[4] : "";
+                return C.Value.Length > 4 ? C.Value[4] : "";
             }
             set
             {
-                if (C.Value.Length > 1 && C.Value[4] != value)
+                if (C.Value.Length > 4 && C.Value[4] != value)
                 {
                     C.Value[2] = value;
                     OnPropertyChanged("Param4");
@@ -174,11 +174,11 @@ namespace AipolicyEditor.AIPolicy.Conditions
         {
             get
             {
-                return C.Value.Length > 1 ? C.Value[5] : "";
+                return C.Value.Length > 5 ? C.Value[5] : "";
             }
             set
             {
-                if (C.Value.Length > 1 && C.Value[5] != value)
+                if (C.Value.Length > 5 && C.Value[5] != value)
                 {
                     C.Value[2] = value;
                     OnPropertyChanged("Param5");
