@@ -63,7 +63,7 @@ namespace AipolicyEditor.AIPolicy.Operations
         public bool Search(string str)
         {
             if (Skill.Value.ToString().Contains(str) || SkillType.ToString().Contains(str) ||
-                Level.ToString().Contains(str) || LevelType.ToString().Contains(str))
+                Level.ToString().Contains(str) || LevelType.ToString().Contains(str) || Target.ToString().Contains(str) || Target.Target.ToString().Contains(str))
                 return true;
             else
                 return false;

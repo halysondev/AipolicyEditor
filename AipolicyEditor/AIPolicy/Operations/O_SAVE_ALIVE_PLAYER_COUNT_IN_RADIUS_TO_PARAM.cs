@@ -21,13 +21,13 @@ namespace AipolicyEditor.AIPolicy.Operations
         public float fRadiusValue { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("uRadiusType")]
-        public uint uRadiusType { get; set; }
+        public VarType uRadiusType { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iTargetID")]
         public int iTargetID { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("uTargetType")]
-        public uint uTargetType { get; set; }
+        public VarType uTargetType { get; set; }
         // Target param
         [LocalizedCategory("TargetParam")]
         [LocalizedDisplayName("Target")]
@@ -36,27 +36,27 @@ namespace AipolicyEditor.AIPolicy.Operations
         public O_SAVE_ALIVE_PLAYER_COUNT_IN_RADIUS_TO_PARAM()
         {
             fRadiusValue = 0;
-            uRadiusType = 0;
+            uRadiusType = VarType.GlobalVarID;
             iTargetID = 0;
-            uTargetType = 0;
+            uTargetType = VarType.GlobalVarID;
             Target = new TargetParam();
         }
 
         public void Read(BinaryReader br)
         {
             fRadiusValue = br.ReadSingle();
-            uRadiusType = br.ReadUInt32();
+            uRadiusType = (VarType)br.ReadUInt32();
             iTargetID = br.ReadInt32();
-            uTargetType = br.ReadUInt32();
+            uTargetType = (VarType)br.ReadUInt32();
             Target = TargetStream.Read(br);
         }
 
         public void Write(BinaryWriter bw)
         {
             bw.Write(fRadiusValue);
-            bw.Write(uRadiusType);
+            bw.Write(Convert.ToUInt32(uRadiusType));
             bw.Write(iTargetID);
-            bw.Write(uTargetType);
+            bw.Write(Convert.ToUInt32(uTargetType));
             TargetStream.Save(bw, Target);
         }
 

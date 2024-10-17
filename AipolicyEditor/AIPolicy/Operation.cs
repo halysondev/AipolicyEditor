@@ -257,7 +257,7 @@ namespace AipolicyEditor.AIPolicy
                    op = new O_BOSS_RUSH_AWARD();
                    break;
                 case 66:
-                    op = new O_66();
+                    op = new O_BOSS_RUSH_END();
                     break;
                 case 67:
                     op = new O_67();

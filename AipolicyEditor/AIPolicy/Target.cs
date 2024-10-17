@@ -1,4 +1,5 @@
 ﻿using AipolicyEditor.AIPolicy.Operations.CustomEditors;
+using System.Collections.Generic;
 using System.IO;
 
 namespace AipolicyEditor.AIPolicy
@@ -85,6 +86,15 @@ namespace AipolicyEditor.AIPolicy
                 bw.Write(param.Unk3);
                 bw.Write(param.Unk4);
             }
+        }
+
+        public static List<string> GetTargetList()
+        {
+            var list = new List<string>();
+            EnumTarget count = EnumTarget.t_num;
+            for (int i = 0; i < (int)count; ++i)
+                list.Add(count.ToString());
+            return list;
         }
     }
 

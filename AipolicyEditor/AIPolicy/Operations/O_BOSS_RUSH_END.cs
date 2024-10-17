@@ -6,7 +6,7 @@ using AipolicyEditor.AIPolicy.Operations.CustomEditors;
 namespace AipolicyEditor.AIPolicy.Operations
 {
 
-	public class O_66 : IOperation, ICloneable
+	public class O_BOSS_RUSH_END : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
@@ -18,12 +18,12 @@ namespace AipolicyEditor.AIPolicy.Operations
 		public string Name => MainWindow.Provider.GetLocalizedString("o66");
 
 		[LocalizedCategory("OperationParam")]
-		[LocalizedDisplayName("Value1")]
-		public int Value1 { get; set; }
+		[LocalizedDisplayName("id")]
+		public int id { get; set; }
 
 		[LocalizedCategory("OperationParam")]
-		[LocalizedDisplayName("Value2")]
-		public int Value2 { get; set; }
+		[LocalizedDisplayName("interfaces")]
+		public int interfaces { get; set; }
 
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("zvMin_X")]
@@ -53,10 +53,10 @@ namespace AipolicyEditor.AIPolicy.Operations
 		[LocalizedDisplayName("Target")]
 		public TargetParam Target { get; set; }
 
-		public O_66()
+		public O_BOSS_RUSH_END()
 		{
-			Value1 = 0;
-			Value2 = 0;
+			id = 0;
+            interfaces = 0;
             zvMin_X = 0;
             zvMin_Y = 0;
             zvMin_Z = 0;
@@ -68,8 +68,8 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public void Read(BinaryReader br)
 		{
-			Value1 = br.ReadInt32();
-			Value2 = br.ReadInt32();
+			id = br.ReadInt32();
+            interfaces = br.ReadInt32();
             zvMin_X = br.ReadSingle();
             zvMin_Y = br.ReadSingle();
             zvMin_Z = br.ReadSingle();
@@ -81,8 +81,8 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public void Write(BinaryWriter bw)
 		{
-			bw.Write(Value1);
-			bw.Write(Value2);
+			bw.Write(id);
+			bw.Write(interfaces);
             bw.Write(zvMin_X);
             bw.Write(zvMin_Y);
             bw.Write(zvMin_Z);
@@ -94,7 +94,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (Value1.ToString().Contains(str) || Value2.ToString().Contains(str))
+			if (id.ToString().Contains(str) || interfaces.ToString().Contains(str))
 			{
 				return true;
 			}
@@ -103,10 +103,10 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public object Clone()
 		{
-			return new O_66
+			return new O_BOSS_RUSH_END
 			{
-				Value1 = Value1,
-				Value2 = Value2,
+				id = id,
+                interfaces = interfaces,
 				Target = (Target.Clone() as TargetParam)
 			};
 		}

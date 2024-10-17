@@ -42,7 +42,7 @@ namespace AipolicyEditor.AIPolicy.Operations
         public int iTargetID { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("uTargetType")]
-        public uint uTargetType { get; set; }
+        public VarType uTargetType { get; set; }
         // Target param
         [LocalizedCategory("TargetParam")]
         [LocalizedDisplayName("Target")]
@@ -68,7 +68,7 @@ namespace AipolicyEditor.AIPolicy.Operations
             MaxY = br.ReadSingle();
             MaxZ = br.ReadSingle();
             iTargetID = br.ReadInt32();
-            uTargetType = br.ReadUInt32();
+            uTargetType = (VarType)br.ReadUInt32();
             Target = TargetStream.Read(br);
         }
 
@@ -81,7 +81,7 @@ namespace AipolicyEditor.AIPolicy.Operations
             bw.Write(MaxY);
             bw.Write(MaxZ);
             bw.Write(iTargetID);
-            bw.Write(uTargetType);
+            bw.Write(Convert.ToUInt32(uTargetType));
             TargetStream.Save(bw, Target);
         }
 

@@ -18,13 +18,13 @@ namespace AipolicyEditor.AIPolicy.Operations
         //Trigger param
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iTimeType")]
-        public int iTimeType { get; set; }
+        public TimeType iTimeType { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iParamID")]
         public int iParamID { get; set; }
         [LocalizedCategory("OperationParam")]
         [LocalizedDisplayName("iParamIDType")]
-        public int iParamIDType { get; set; }
+        public VarType iParamIDType { get; set; }
 
         // Target param
         [LocalizedCategory("TargetParam")]
@@ -33,25 +33,25 @@ namespace AipolicyEditor.AIPolicy.Operations
 
         public O_SAVE_TIME()
         {
-            iTimeType = 0;
+            iTimeType = TimeType.Year;
             iParamID = 0;
-            iParamIDType = 0;
+            iParamIDType = VarType.GlobalVarID;
             Target = new TargetParam();
         }
 
         public void Read(BinaryReader br)
         {
-            iTimeType = br.ReadInt32();
+            iTimeType = (TimeType)br.ReadInt32();
             iParamID = br.ReadInt32();
-            iParamIDType = br.ReadInt32();
+            iParamIDType = (VarType)br.ReadInt32();
             Target = TargetStream.Read(br);
         }
 
         public void Write(BinaryWriter bw)
         {
-            bw.Write(iTimeType);
+            bw.Write(Convert.ToUInt32(iTimeType));
             bw.Write(iParamID);
-            bw.Write(iParamIDType);
+            bw.Write(Convert.ToUInt32(iParamIDType));
             TargetStream.Save(bw, Target);
         }
 
