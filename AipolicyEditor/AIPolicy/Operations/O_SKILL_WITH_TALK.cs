@@ -8,7 +8,7 @@ using WPFLocalizeExtension.Extensions;
 
 namespace AipolicyEditor.AIPolicy.Operations
 {
-    public class O_SKILL_WITH_TALK : IOperation
+    public class O_SKILL_WITH_TALK : IOperation, ICloneable
     {
         [Browsable(false)]
         public int FromVersion => 24;
@@ -96,7 +96,16 @@ namespace AipolicyEditor.AIPolicy.Operations
         
         public object Clone()
         {
-            return new O_SKILL_WITH_TALK() { uSkill = uSkill, uSkillType = uSkillType, uLevel = uLevel, uLevelType = uLevelType, Text = Text, Mask = Mask, Target = Target.Clone() as TargetParam };
+            return new O_SKILL_WITH_TALK()
+            {
+                uSkill = uSkill, 
+                uSkillType = uSkillType, 
+                uLevel = uLevel, 
+                uLevelType = uLevelType, 
+                Text = Text, 
+                Mask = Mask, 
+                Target = Target.Clone() as TargetParam
+            };
         }
         
     }
