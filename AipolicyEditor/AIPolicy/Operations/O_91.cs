@@ -80,7 +80,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (Value1.ToString().Contains(str) || Value2.ToString().Contains(str) || Value3.ToString().Contains(str) || Value4.ToString().Contains(str) || Value5.ToString().Contains(str))
+			if (ID.ToString().Contains(str) || Value1.ToString().Contains(str) || Value2.ToString().Contains(str) || Value3.ToString().Contains(str) || Value4.ToString().Contains(str) || Value5.ToString().Contains(str))
 			{
 				return true;
 			}

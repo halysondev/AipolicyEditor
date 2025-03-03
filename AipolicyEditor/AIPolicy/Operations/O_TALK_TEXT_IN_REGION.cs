@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace AipolicyEditor.AIPolicy.Operations
 {
 
-	public class O_72 : IOperation, ICloneable
+	public class O_TALK_TEXT_IN_REGION : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
@@ -61,7 +61,7 @@ namespace AipolicyEditor.AIPolicy.Operations
         public float zvMax_Z { get; set; }
         public TargetParam Target { get; set; }
 
-		public O_72()
+		public O_TALK_TEXT_IN_REGION()
 		{
             szData = "";
             uSize = 0;
@@ -174,7 +174,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (szData.ToString().Contains(str) || uAppendDataMask.ToString().Contains(str))
+			if (szData.ToString().Contains(str) || uAppendDataMask.ToString().Contains(str) || ChatChannel.ToString().Contains(str) || zvMin_X.ToString().Contains(str) || zvMin_Y.ToString().Contains(str) || zvMin_Z.ToString().Contains(str) || zvMax_X.ToString().Contains(str) || zvMax_Y.ToString().Contains(str) || zvMax_Z.ToString().Contains(str))
 			{
 				return true;
 			}
@@ -183,10 +183,18 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public object Clone()
 		{
-			return new O_72
+			return new O_TALK_TEXT_IN_REGION
 			{
+                uSize = uSize,
                 szData = szData,
+                ChatChannel = ChatChannel,
                 uAppendDataMask = uAppendDataMask,
+                zvMin_X = zvMin_X,
+                zvMin_Y = zvMin_Y,
+                zvMin_Z = zvMin_Z,
+                zvMax_X = zvMax_X,
+                zvMax_Y = zvMax_Y,
+                zvMax_Z = zvMax_Z,
 				Target = (Target.Clone() as TargetParam)
 			};
 		}

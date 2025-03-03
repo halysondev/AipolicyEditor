@@ -6,7 +6,7 @@ using AipolicyEditor.AIPolicy.Operations.CustomEditors;
 namespace AipolicyEditor.AIPolicy.Operations
 {
 
-	public class O_67 : IOperation, ICloneable
+	public class O_USE_SKILL_IN_REGION : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
@@ -49,7 +49,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 		[LocalizedDisplayName("Target")]
 		public TargetParam Target { get; set; }
 
-		public O_67()
+		public O_USE_SKILL_IN_REGION()
 		{
             zvMin_X = 0;
             zvMin_Y = 0;
@@ -86,8 +86,8 @@ namespace AipolicyEditor.AIPolicy.Operations
 		}
 
 		public bool Search(string str)
-		{
-			if (uSkill.ToString().Contains(str))
+        {
+            if (uSkill.ToString().Contains(str) || zvMin_X.ToString().Contains(str) || zvMin_Y.ToString().Contains(str) || zvMin_Z.ToString().Contains(str) || zvMax_X.ToString().Contains(str) || zvMax_Y.ToString().Contains(str) || zvMax_Z.ToString().Contains(str))
 			{
 				return true;
 			}
@@ -96,9 +96,15 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public object Clone()
 		{
-			return new O_67
+			return new O_USE_SKILL_IN_REGION
 			{
                 uSkill = uSkill,
+                zvMin_X = zvMin_X,
+                zvMin_Y = zvMin_Y,
+                zvMin_Z = zvMin_Z,
+                zvMax_X = zvMax_X,
+                zvMax_Y = zvMax_Y,
+                zvMax_Z = zvMax_Z,
 				Target = (Target.Clone() as TargetParam)
 			};
 		}

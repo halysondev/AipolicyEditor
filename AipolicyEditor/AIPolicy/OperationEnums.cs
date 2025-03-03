@@ -49,6 +49,7 @@
         LocalVarID = 1,
         Const = 2,
         Random = 3,
+        HistoryVarId = 4,
         Num
     }
 

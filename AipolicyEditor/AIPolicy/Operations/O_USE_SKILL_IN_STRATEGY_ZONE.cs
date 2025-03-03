@@ -6,7 +6,7 @@ using AipolicyEditor.AIPolicy.Operations.CustomEditors;
 namespace AipolicyEditor.AIPolicy.Operations
 {
 
-	public class O_74 : IOperation, ICloneable
+	public class O_USE_SKILL_IN_STRATEGY_ZONE : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
@@ -84,7 +84,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 		[LocalizedCategory("TargetParam")]
 		public TargetParam Target { get; set; }
 
-		public O_74()
+		public O_USE_SKILL_IN_STRATEGY_ZONE()
 		{
             ID1 = 0;
             ID1Type = 0;
@@ -152,18 +152,38 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (Value2.ToString().Contains(str))
+			if (ID1.ToString().Contains(str) || ID1Type.ToString().Contains(str) || ID2.ToString().Contains(str) || ID2Type.ToString().Contains(str)
+                || ID3.ToString().Contains(str) || ID3Type.ToString().Contains(str) || ID4.ToString().Contains(str) || ID4Type.ToString().Contains(str)
+                || ID5.ToString().Contains(str) || ID5Type.ToString().Contains(str) || ID6.ToString().Contains(str) || ID6Type.ToString().Contains(str)
+                || Value2.ToString().Contains(str) || uSkill.ToString().Contains(str) || uSkillType.ToString().Contains(str) || uLevel.ToString().Contains(str) || uLevelType.ToString().Contains(str)
+                )
 			{
 				return true;
 			}
 			return false;
 		}
-
+            
 		public object Clone()
 		{
-			return new O_74
+			return new O_USE_SKILL_IN_STRATEGY_ZONE
 			{
-				Value2 = Value2,
+				ID1 = ID1,
+                ID1Type = ID1Type,
+                ID2 = ID2,
+                ID2Type = ID2Type,
+                ID3 = ID3,
+                ID3Type = ID3Type,
+                ID4 = ID4,
+                ID4Type = ID4Type,
+                ID5 = ID5,
+                ID5Type = ID5Type,
+                ID6 = ID6,
+                ID6Type = ID6Type,
+                Value2 = Value2,
+                uSkill = uSkill,
+                uSkillType = uSkillType,
+                uLevel = uLevel,
+                uLevelType = uLevelType,
 				Target = (Target.Clone() as TargetParam)
 			};
 		}

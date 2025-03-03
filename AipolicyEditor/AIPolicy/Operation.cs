@@ -260,10 +260,10 @@ namespace AipolicyEditor.AIPolicy
                     op = new O_BOSS_RUSH_END();
                     break;
                 case 67:
-                    op = new O_67();
+                    op = new O_USE_SKILL_IN_REGION();
                     break;
                 case 68:
-                    op = new O_68();
+                    op = new O_BIRTH_SIZE();
                     break;
                 case 69:
                     op = new O_69();
@@ -272,17 +272,17 @@ namespace AipolicyEditor.AIPolicy
                     op = new O_70();
                     break;
                 case 71:
-                    op = new O_71();
+                    op = new O_GET_HP_NUM();
                     break;
                 case 72:
-                    op = new O_72();
+                    op = new O_TALK_TEXT_IN_REGION();
                     break;
                 //162
                 case 73:
-                    op = new O_73();
+                    op = new O_ACTIVE_WHITELIST();
                     break;
                 case 74:
-                    op = new O_74();
+                    op = new O_USE_SKILL_IN_STRATEGY_ZONE();
                     break;
                 case 75:
                     op = new O_75();

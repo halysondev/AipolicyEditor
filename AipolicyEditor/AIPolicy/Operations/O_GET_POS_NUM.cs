@@ -78,6 +78,7 @@ namespace AipolicyEditor.AIPolicy.Operations
         public bool Search(string str)
         {
             if (uNum.ToString().Contains(str) || uuNumType.ToString().Contains(str) ||
+                pos.ToString().Contains(str) || posType.ToString().Contains(str) ||
                 varID.ToString().Contains(str) || varType.ToString().Contains(str))
                 return true;
             else

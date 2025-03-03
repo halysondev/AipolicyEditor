@@ -94,7 +94,9 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (id.ToString().Contains(str) || interfaces.ToString().Contains(str))
+			if (id.ToString().Contains(str) || interfaces.ToString().Contains(str)
+                || zvMin_X.ToString().Contains(str) || zvMin_Y.ToString().Contains(str) || zvMin_Z.ToString().Contains(str)
+                || zvMax_X.ToString().Contains(str) || zvMax_Y.ToString().Contains(str) || zvMax_Z.ToString().Contains(str))
 			{
 				return true;
 			}
@@ -107,6 +109,12 @@ namespace AipolicyEditor.AIPolicy.Operations
 			{
 				id = id,
                 interfaces = interfaces,
+                zvMin_X = zvMin_X,
+                zvMin_Y = zvMin_Y,
+                zvMin_Z = zvMin_Z,
+                zvMax_X = zvMax_X,
+                zvMax_Y = zvMax_Y,
+                zvMax_Z = zvMax_Z,
 				Target = (Target.Clone() as TargetParam)
 			};
 		}

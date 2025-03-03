@@ -200,7 +200,7 @@ namespace AipolicyEditor.AIPolicy.Operations
             return new O_MASS_ACTIVE_CONTROLLER
             {
                 bStop = bStop,
-                Target = (Target.Clone() as TargetParam),
+                bytes = bytes,
                 ID1 = ID1,
                 ID1Type = ID1Type,
                 ID2 = ID2,
@@ -221,6 +221,7 @@ namespace AipolicyEditor.AIPolicy.Operations
                 ID9Type = ID9Type,
                 ID10 = ID10,
                 ID10Type = ID10Type,
+                Target = (Target.Clone() as TargetParam),
             };
         }
     }

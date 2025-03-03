@@ -178,7 +178,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public bool Search(string str)
 		{
-			if (Value1.ToString().Contains(str) || Value2.ToString().Contains(str) || Value3.ToString().Contains(str) || Value4.ToString().Contains(str) || Value5.ToString().Contains(str) || Value6.ToString().Contains(str) || Value7.ToString().Contains(str) || Value8.ToString().Contains(str) || Value8.ToString().Contains(str) || Value10.ToString().Contains(str) || Value11.ToString().Contains(str) || Value12.ToString().Contains(str) || Value13.ToString().Contains(str) || Value14.ToString().Contains(str) || Value15.ToString().Contains(str) || Value16.ToString().Contains(str) || Value17.ToString().Contains(str) || Value18.ToString().Contains(str) || Value19.ToString().Contains(str) || Value20.ToString().Contains(str))
+			if (Value1.ToString().Contains(str) || Value2.ToString().Contains(str) || Value3.ToString().Contains(str) || Value4.ToString().Contains(str) || Value5.ToString().Contains(str) || Value6.ToString().Contains(str) || Value7.ToString().Contains(str) || Value8.ToString().Contains(str) || Value9.ToString().Contains(str) || Value10.ToString().Contains(str) || Value11.ToString().Contains(str) || Value12.ToString().Contains(str) || Value13.ToString().Contains(str) || Value14.ToString().Contains(str) || Value15.ToString().Contains(str) || Value16.ToString().Contains(str) || Value17.ToString().Contains(str) || Value18.ToString().Contains(str) || Value19.ToString().Contains(str) || Value20.ToString().Contains(str))
 			{
 				return true;
 			}

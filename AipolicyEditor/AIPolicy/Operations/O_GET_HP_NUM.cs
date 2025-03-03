@@ -5,61 +5,53 @@ using AipolicyEditor.AIPolicy.Operations.CustomEditors;
 
 namespace AipolicyEditor.AIPolicy.Operations
 {
-
-	public class O_68 : IOperation, ICloneable
+	public class O_GET_HP_NUM : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
 
 		[Browsable(false)]
-		public int OperID => 68;
+		public int OperID => 71;
 
 		[Browsable(false)]
-		public string Name => MainWindow.Provider.GetLocalizedString("o68");
+		public string Name => MainWindow.Provider.GetLocalizedString("o71");
 
+		[LocalizedCategory("OperationParam")]
 		[LocalizedDisplayName("Value1")]
-		[LocalizedCategory("OperationParam")]
-		public float Value1 { get; set; }
+		public int Value1 { get; set; }
 
 		[LocalizedCategory("OperationParam")]
-		[LocalizedDisplayName("Value1Type")]
-		public VarType Value1Type { get; set; }
-
-		[LocalizedDisplayName("Value3")]
-		[LocalizedCategory("OperationParam")]
-		public float Value3 { get; set; }
+		[LocalizedDisplayName("Value2")]
+		public int Value2 { get; set; }
 
 		[LocalizedCategory("TargetParam")]
 		[LocalizedDisplayName("Target")]
 		public TargetParam Target { get; set; }
 
-		public O_68()
+		public O_GET_HP_NUM()
 		{
 			Value1 = 0;
-            Value1Type = 0;
-			Value3 = 0;
+			Value2 = 0;
 			Target = new TargetParam();
 		}
 
 		public void Read(BinaryReader br)
 		{
-			Value1 = br.ReadSingle();
-            Value1Type = (VarType)br.ReadInt32();
-			Value3 = br.ReadSingle();
+			Value1 = br.ReadInt32();
+			Value2 = br.ReadInt32();
 			Target = TargetStream.Read(br);
 		}
 
 		public void Write(BinaryWriter bw)
 		{
 			bw.Write(Value1);
-			bw.Write(Convert.ToUInt32(Value1Type));
-			bw.Write(Value3);
+			bw.Write(Value2);
 			TargetStream.Save(bw, Target);
 		}
 
 		public bool Search(string str)
 		{
-			if (Value1.ToString().Contains(str) || Value1Type.ToString().Contains(str) || Value3.ToString().Contains(str))
+			if (Value1.ToString().Contains(str) || Value2.ToString().Contains(str))
 			{
 				return true;
 			}
@@ -68,11 +60,10 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public object Clone()
 		{
-			return new O_68
+			return new O_GET_HP_NUM
 			{
 				Value1 = Value1,
-                Value1Type = Value1Type,
-				Value3 = Value3,
+				Value2 = Value2,
 				Target = (Target.Clone() as TargetParam)
 			};
 		}

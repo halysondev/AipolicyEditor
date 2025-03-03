@@ -6,7 +6,7 @@ using AipolicyEditor.AIPolicy.Operations.CustomEditors;
 namespace AipolicyEditor.AIPolicy.Operations
 {
 
-	public class O_73 : IOperation, ICloneable
+	public class O_ACTIVE_WHITELIST : IOperation, ICloneable
 	{
 		[Browsable(false)]
 		public int FromVersion => 33;
@@ -29,7 +29,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 		[LocalizedCategory("TargetParam")]
 		public TargetParam Target { get; set; }
 
-		public O_73()
+		public O_ACTIVE_WHITELIST()
 		{
 			Value1 = 0;
 			Value2 = 0;
@@ -61,7 +61,7 @@ namespace AipolicyEditor.AIPolicy.Operations
 
 		public object Clone()
 		{
-			return new O_73
+			return new O_ACTIVE_WHITELIST
 			{
 				Value1 = Value1,
 				Value2 = Value2,
