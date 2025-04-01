@@ -1,4 +1,4 @@
-﻿namespace KuklusDataEditor.Core
+﻿namespace AipolicyEditor.ElementsData
 {
     public class Events
     {

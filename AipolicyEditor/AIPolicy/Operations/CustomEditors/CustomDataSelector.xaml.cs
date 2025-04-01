@@ -7,10 +7,12 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Runtime.Versioning;
 using MahApps.Metro.Controls;
 
 namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
 {
+    [SupportedOSPlatform("windows")]
     public partial class CustomDataSelector : MetroWindow, INotifyPropertyChanged
     {
         private string _Filter = "";
@@ -77,6 +79,7 @@ namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
             }
         }
 
+        [SupportedOSPlatform("windows")]
         public void ProItemDesc(string desc)
         {
             if (desc.Length < 2)

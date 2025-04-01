@@ -16,12 +16,12 @@ namespace AipolicyEditor
                 Type.IsChecked = true;
             else
                 Type.IsChecked = false;
-            string[] files = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Lang"));
+            string[] files = Directory.GetFiles(Path.Combine(Utils.GetCurrentProcessFolder(), "Lang"));
             foreach (string file in files)
             {
-                Language.Items.Add(Path.GetFileNameWithoutExtension(file));
+                LanguageComboBox.Items.Add(Path.GetFileNameWithoutExtension(file));
             }
-            Language.SelectedItem = Settings.Language;
+            LanguageComboBox.SelectedItem = Settings.Language;
             Configs.Text = Settings.ConfigsPath;
             Elements.Text = Settings.ElementsPath;
             if(Settings.AuttomaticallyConvertToLastVersion == 1)
@@ -54,10 +54,10 @@ namespace AipolicyEditor
 
         private void SaveClick(object sender, RoutedEventArgs e)
         {
-            if (Language.SelectedIndex > -1)
+            if (LanguageComboBox.SelectedIndex > -1)
             {
-                MainWindow.Provider.ChangeLanguage(Language.SelectedItem.ToString());
-                Settings.Language = Language.SelectedItem.ToString();
+                MainWindow.Provider.ChangeLanguage(LanguageComboBox.SelectedItem.ToString());
+                Settings.Language = LanguageComboBox.SelectedItem.ToString();
                 if (Type.IsChecked == true)
                     Settings.ConditionType = 1;
                 else

@@ -28,7 +28,7 @@
             <RowDefinition Height="33*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
-        <ComboBox Name="Language" Margin="43,10,16,8" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="LanguageComboBox" Margin="43,10,16,8" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Label Content="Language" Margin="10,10,220,0" VerticalAlignment="Top" Height="26" Grid.ColumnSpan="2"/>
         <Button Content="Save" Margin="10,10,16,10" Click="SaveClick" Grid.Row="6" Grid.ColumnSpan="3"/>
         <CheckBox Name="Type" Content="Replace mathematical symbol with text (like + = 'PLUS')" Margin="10,2,16,4" Grid.ColumnSpan="3" Grid.Row="1"/>

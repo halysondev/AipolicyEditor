@@ -1,4 +1,4 @@
-﻿namespace KuklusDataEditor.Core.Dialogs
+﻿namespace AipolicyEditor.ElementsData.Dialogs
 {
     public class EDialogOption
     {

@@ -9,6 +9,12 @@ namespace AipolicyEditor
 {
     public static class StaticConverter
     {
+        // Static constructor to register encoding provider
+        static StaticConverter()
+        {
+            // Register the CodePagesEncodingProvider to enable non-Unicode encodings like GBK (code page 936)
+            Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+        }
         public static int ToInt32(this string value)
         {
             return int.Parse(value);

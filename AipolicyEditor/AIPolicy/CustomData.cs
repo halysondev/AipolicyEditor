@@ -13,7 +13,7 @@ namespace AipolicyEditor.AIPolicy
 {
     public class CustomData
     {
-        private static LiteDB.LiteDatabase Cache = new LiteDB.LiteDatabase(AppDomain.CurrentDomain.BaseDirectory + "Cache.db");
+        private static LiteDB.LiteDatabase Cache = new LiteDB.LiteDatabase(Utils.GetCurrentProcessFolder() + "Cache.db");
 
         public static List<CustomDataCollection> Skills
         {
@@ -100,7 +100,7 @@ namespace AipolicyEditor.AIPolicy
                     var col1 = Cache.GetCollection<CustomDataCollection>("Npcs");
                     var col2 = Cache.GetCollection<CustomDataCollection>("Mobs");
                     var col3 = Cache.GetCollection<CustomDataCollection>("Mines");
-                    KuklusDataEditor.Core.ElementsData elements = new KuklusDataEditor.Core.ElementsData();
+                    AipolicyEditor.ElementsData.ElementsData elements = new AipolicyEditor.ElementsData.ElementsData();
                     try
                     {
                         elements.Load(Settings.ElementsPath);

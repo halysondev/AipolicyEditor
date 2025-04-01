@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace KuklusDataEditor.Core.Dialogs
+namespace AipolicyEditor.ElementsData.Dialogs
 {
     public class EDialog
     {

@@ -3,11 +3,12 @@ using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.ComponentModel;
-
 using System.Windows.Input;
+using System.Runtime.Versioning;
 
 namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
 {
+    [SupportedOSPlatform("windows")]
     public class SkillSelector : ITypeEditor
     {
         private BtnText Control { get; set; }
@@ -42,6 +43,7 @@ namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
             }
         }
 
+        [SupportedOSPlatform("windows")]
         private void Click(object sender, System.Windows.RoutedEventArgs e)
         {
             CustomDataSelector cds = new CustomDataSelector(CustomData.Skills);
@@ -49,6 +51,7 @@ namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
             cds.ShowDialog();
         }
 
+        [SupportedOSPlatform("windows")]
         private void ChangeValue(int value)
         {
             Control.Text.Text = value.ToString();

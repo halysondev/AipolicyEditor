@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace KuklusDataEditor.Core.Dialogs
+namespace AipolicyEditor.ElementsData.Dialogs
 {
     public class EDialogList
     {

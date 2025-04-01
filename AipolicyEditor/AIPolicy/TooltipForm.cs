@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Runtime.Versioning;
 using API = UdE.API; // Supondo que API esteja no namespace UdE
 
 namespace AipolicyEditor
 {
+    [SupportedOSPlatform("windows")]
     public partial class TooltipForm : Form
     {
         private DataGridView dataGridView;
@@ -13,6 +15,7 @@ namespace AipolicyEditor
             InitializeComponent();
         }
 
+        [SupportedOSPlatform("windows")]
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
@@ -39,6 +42,7 @@ namespace AipolicyEditor
             this.ResumeLayout(false);
         }
 
+        [SupportedOSPlatform("windows")]
         public void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -51,6 +55,7 @@ namespace AipolicyEditor
             }
         }
 
+        [SupportedOSPlatform("windows")]
         public void DataGridView_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
             API.fHideToolTip();

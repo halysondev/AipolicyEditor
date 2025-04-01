@@ -1,13 +1,13 @@
 ﻿using AipolicyEditor;
-using KuklusDataEditor.Core.Dialogs;
+using AipolicyEditor.ElementsData.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static KuklusDataEditor.Core.Events;
+using static AipolicyEditor.ElementsData.Events;
 
-namespace KuklusDataEditor.Core
+namespace AipolicyEditor.ElementsData
 {
     public class ElementsData
     {

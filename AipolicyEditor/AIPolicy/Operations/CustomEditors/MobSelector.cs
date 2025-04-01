@@ -8,9 +8,11 @@ using System.Windows.Input;
 using System.ComponentModel;
 using API = UdE.API; // Supondo que API esteja no namespace UdE
 using WinForms = System.Windows.Forms; // Adicione a referência para Windows Forms
+using System.Runtime.Versioning;
 
 namespace AipolicyEditor.AIPolicy.Operations.CustomEditors
 {
+    [SupportedOSPlatform("windows")]
     public class MobSelector : ITypeEditor
     {
         private BtnText Control { get; set; }

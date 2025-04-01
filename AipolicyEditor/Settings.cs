@@ -1,67 +1,70 @@
 ﻿using System;
-using MadMilkman.Ini;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.Versioning;
+using AipolicyEditor.Compatibility;
 
 namespace AipolicyEditor
 {
+    [SupportedOSPlatform("windows")]
     public class Settings
     {
-        private static IniFile Ini = new IniFile();
+        private static IniFileWrapper Ini = new IniFileWrapper(Path.Combine(Utils.GetCurrentProcessFolder(), "Settings.ini"));
         public static string Language
         {
-            get => Ini.Sections["GENERAL"].Keys["Language"].Value;
+            get => Ini.GetValue("GENERAL", "Language", "en-US");
             set
             {
-                Ini.Sections["GENERAL"].Keys["Language"].Value = value.ToString();
+                Ini.SetValue("GENERAL", "Language", value.ToString());
                 Save();
             }
         }
         public static int ConditionType
         {
-            get => Ini.Sections["GENERAL"].Keys["ConditionType"].Value.ToInt32();
+            get => int.Parse(Ini.GetValue("GENERAL", "ConditionType", "0"));
             set
             {
-                Ini.Sections["GENERAL"].Keys["ConditionType"].Value = value.ToString();
+                Ini.SetValue("GENERAL", "ConditionType", value.ToString());
                 Save();
             }
         }
 
         public static int AuttomaticallyConvertToLastVersion
         {
-            get => Ini.Sections["GENERAL"].Keys["AuttomaticallyConvertToLastVersion"].Value.ToInt32();
+            get => int.Parse(Ini.GetValue("GENERAL", "AuttomaticallyConvertToLastVersion", "0"));
             set
             {
-                Ini.Sections["GENERAL"].Keys["AuttomaticallyConvertToLastVersion"].Value = "0";//value.ToString();
+                Ini.SetValue("GENERAL", "AuttomaticallyConvertToLastVersion", "0"); //value.ToString();
                 Save();
             }
         }
         public static string ConfigsPath
         {
-            get => Ini.Sections["GENERAL"].Keys["ConfigsPath"].Value;
+            get => Ini.GetValue("GENERAL", "ConfigsPath", "");
             set
             {
-                Ini.Sections["GENERAL"].Keys["ConfigsPath"].Value = value;
+                Ini.SetValue("GENERAL", "ConfigsPath", value);
                 Save();
             }
         }
         public static string ElementsPath
         {
-            get => Ini.Sections["GENERAL"].Keys["ElementsPath"].Value;
+            get => Ini.GetValue("GENERAL", "ElementsPath", "");
             set
             {
-                Ini.Sections["GENERAL"].Keys["ElementsPath"].Value = value;
+                Ini.SetValue("GENERAL", "ElementsPath", value);
                 Save();
             }
         }
 
         public static void Load()
         {
-            Ini.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Settings.ini"));
+            Ini.Load();
         }
 
         public static void Save()
         {
-            Ini.Save(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Settings.ini"));
+            Ini.Save();
         }
     }
 }

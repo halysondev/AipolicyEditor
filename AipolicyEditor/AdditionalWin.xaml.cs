@@ -33,7 +33,7 @@ namespace AipolicyEditor
             {
                 Aipolicy.Controllers.Remove(c);
             }
-            Utils.ShowMessage($"{MainWindow.Provider.GetLocalizedString("RemovedControllersCount")}: {count}");
+            PlatformSpecificHelpers.ShowMessage($"{MainWindow.Provider.GetLocalizedString("RemovedControllersCount")}: {count}");
         }
 
         private void TranslateUsingOtherFile(object sender, RoutedEventArgs e)
@@ -78,7 +78,7 @@ namespace AipolicyEditor
                     }
                 }
             }
-            Utils.ShowMessage($"{MainWindow.Provider.GetLocalizedString("TranslateUsingOtherFileCount")}: {count}");
+            PlatformSpecificHelpers.ShowMessage($"{MainWindow.Provider.GetLocalizedString("TranslateUsingOtherFileCount")}: {count}");
         }
 
         private void ConvertAllTriggersToVersion(object sender, RoutedEventArgs e)
@@ -97,7 +97,7 @@ namespace AipolicyEditor
                 }
             }
 
-            Utils.ShowMessage($"Converted All Triggers to Version: {maxVersion}");
+            PlatformSpecificHelpers.ShowMessage($"Converted All Triggers to Version: {maxVersion}");
         }
     }
 }

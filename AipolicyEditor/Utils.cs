@@ -10,17 +10,31 @@ using Markdig;
 using Markdig.Wpf;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Runtime.Versioning;
+using System.Diagnostics;
+using System.IO;
 
 namespace AipolicyEditor
 {
     public static class Utils
     {
+        public static string GetCurrentProcessFolder()
+        {
+            using (Process process = Process.GetCurrentProcess())
+            {
+                using (ProcessModule mainModule = process.MainModule)
+                {
+                    return Path.GetDirectoryName(mainModule.FileName);
+                }
+            }
+        }
         public static void MemoryCleaner()
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
 
+        [SupportedOSPlatform("windows7.0")]
         public static void ShowMessage(string message, string title = "AipolicyEditor", bool isMarkdown = false)
         {
             if (isMarkdown)

@@ -4,15 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AipolicyEditor;
 
-namespace KuklusDataEditor.Core
+namespace AipolicyEditor.ElementsData
 {
     public class EConfigLoader
     {
         public static (List<EList>, int) LoadConfig(short version)
         {
             List<EList> lists = new List<EList>();
-            string[] files = Directory.GetFiles(Path.Combine(Application.StartupPath, "Configs"), "PW_*_v" + version + ".cfg");
+            string[] files = Directory.GetFiles(Path.Combine(PlatformSpecificHelpers.GetStartupPath(), "Configs"), "PW_*_v" + version + ".cfg");
             if (files.Length == 0)
                 return (null, 0);
             StreamReader sr = new StreamReader(files.First());

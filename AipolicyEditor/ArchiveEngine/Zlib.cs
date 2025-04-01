@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using zlib;
+using AipolicyEditor.Compatibility;
 
 namespace AngelicaArchiveManager.Core
 {
@@ -8,26 +8,26 @@ namespace AngelicaArchiveManager.Core
     {
         public static byte[] Decompress(byte[] bytes, int size)
         {
-            byte[] output = new byte[size];
-            ZOutputStream zos = new ZOutputStream(new MemoryStream(output));
             try
             {
-                CopyStream(new MemoryStream(bytes), zos, size);
+                // Usa a implementação moderna de Zlib
+                return ZlibWrapper.Decompress(bytes);
             }
-            catch (ZStreamException e)
+            catch (Exception e)
             {
                 Console.WriteLine($"Bad zlib data: {e.Message}");
+                // Retorna um array vazio em caso de erro
+                return new byte[size];
             }
-            return output;
         }
 
         public static byte[] Compress(byte[] bytes, int compression_level)
         {
-            MemoryStream ms = new MemoryStream();
-            ZOutputStream zos = new ZOutputStream(ms, compression_level);
-            CopyStream(new MemoryStream(bytes), zos, bytes.Length);
-            zos.finish();
-            return ms.ToArray().Length < bytes.Length ? ms.ToArray() : bytes;
+            // Usa a implementação moderna de Zlib
+            byte[] compressed = ZlibWrapper.Compress(bytes);
+            
+            // Retorna os dados originais se a compressão não resultar em economia de espaço
+            return compressed.Length < bytes.Length ? compressed : bytes;
         }
 
         public static void CopyStream(Stream input, Stream output, int Size)

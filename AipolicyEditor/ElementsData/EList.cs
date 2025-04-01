@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KuklusDataEditor.Core
+namespace AipolicyEditor.ElementsData
 {
     public class EList
     {

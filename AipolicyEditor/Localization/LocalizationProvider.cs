@@ -29,12 +29,15 @@ namespace AipolicyEditor.Localization
         }
 
         public event ProviderChangedEventHandler ProviderChanged;
+        
+#pragma warning disable CS0067 // The event is never used
         public event ProviderErrorEventHandler ProviderError;
         public event ValueChangedEventHandler ValueChanged;
+#pragma warning restore CS0067
 
         public LocalizationProvider()
         {
-            string[] files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "Lang");
+            string[] files = Directory.GetFiles(Utils.GetCurrentProcessFolder(), "Lang");
             foreach (string file in files)
             {
 
@@ -43,7 +46,7 @@ namespace AipolicyEditor.Localization
 
         public void ChangeLanguage(string lang)
         {
-            string[] files = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Lang"), $"{lang}.*");
+            string[] files = Directory.GetFiles(Path.Combine(Utils.GetCurrentProcessFolder(), "Lang"), $"{lang}.*");
             if (files.Length < 1)
                 return;
             StreamReader sr = new StreamReader(files.First());

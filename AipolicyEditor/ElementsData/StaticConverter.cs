@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace KuklusDataEditor
+namespace AipolicyEditor.ElementsData
 {
     public static class StaticConverter
     {

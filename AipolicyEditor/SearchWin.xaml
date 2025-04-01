@@ -10,19 +10,23 @@
     lex:LocalizeDictionary.IncludeInvariantCulture="True"
     x:Class="AipolicyEditor.SearchWin"
     Title="SearchWin"
-    Height="450"
-    Width="550" ResizeMode="NoResize">
+    Height="474"
+    Width="542" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="SearchPattern" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="524"/>
-        <Button x:Name="Search" Content="{lex:Loc Search}" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="524" Click="Search_Click"/>
-        <ListBox x:Name="SearchResults" HorizontalAlignment="Left" Height="291" Margin="10,93,0,0" VerticalAlignment="Top" Width="524" MouseDoubleClick="SearchResults_MouseDoubleClick"/>
-        <Label Content="{lex:Loc SearchPattern}" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" Width="140" HorizontalContentAlignment="Center"/>
-        <Label Content="{lex:Loc SearchUsing}" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="145"/>
-        <ComboBox Name="SearchType" HorizontalAlignment="Left" Margin="160,390,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="TypeChange">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="93*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="SearchPattern" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="524" Grid.ColumnSpan="2"/>
+        <Button x:Name="Search" Content="{lex:Loc Search}" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="524" Click="Search_Click" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="SearchResults" HorizontalAlignment="Left" Height="291" Margin="10,93,0,0" VerticalAlignment="Top" Width="524" MouseDoubleClick="SearchResults_MouseDoubleClick" Grid.ColumnSpan="2"/>
+        <Label Content="{lex:Loc SearchPattern}" HorizontalAlignment="Left" Margin="120,4,0,0" VerticalAlignment="Top" Width="140" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Label Content="{lex:Loc SearchUsing}" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="145" Grid.ColumnSpan="2"/>
+        <ComboBox Name="SearchType" HorizontalAlignment="Left" Margin="75,390,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="TypeChange" Grid.Column="1">
             <ComboBoxItem Content="{lex:Loc Condition}"></ComboBoxItem>
             <ComboBoxItem Content="{lex:Loc Operation}"></ComboBoxItem>
         </ComboBox>
-        <ComboBox Name="Types" HorizontalAlignment="Left" Margin="265,389,0,0" VerticalAlignment="Top" Width="189"/>
-        <Button Content="{lex:Loc Search}" HorizontalAlignment="Left" Margin="459,389,0,0" VerticalAlignment="Top" Width="75" Click="SearchTypeClick"/>
+        <ComboBox Name="Types" HorizontalAlignment="Left" Margin="180,389,0,0" VerticalAlignment="Top" Width="189" Grid.Column="1"/>
+        <Button Content="{lex:Loc Search}" HorizontalAlignment="Left" Margin="374,389,0,0" VerticalAlignment="Top" Width="75" Click="SearchTypeClick" Grid.Column="1"/>
     </Grid>
 </Controls:MetroWindow>

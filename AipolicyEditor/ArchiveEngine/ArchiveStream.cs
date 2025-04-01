@@ -72,19 +72,37 @@ namespace AngelicaArchiveManager.Core.ArchiveEngine
         public byte[] ReadBytes(int count)
         {
             byte[] array = new byte[count];
-            int BytesRead = 0;
+            int bytesRead = 0;
+            int totalBytesRead = 0;
+            
             if (Position < pck.Length)
             {
-                BytesRead = pck.Read(array, 0, count);
-                if (BytesRead < count && pkx != null)
+                while (totalBytesRead < count)
+                {
+                    bytesRead = pck.Read(array, totalBytesRead, count - totalBytesRead);
+                    if (bytesRead == 0) break; // No more bytes to read
+                    totalBytesRead += bytesRead;
+                }
+                
+                if (totalBytesRead < count && pkx != null)
                 {
                     pkx.Seek(0, SeekOrigin.Begin);
-                    BytesRead += pkx.Read(array, BytesRead, count - BytesRead);
+                    while (totalBytesRead < count)
+                    {
+                        bytesRead = pkx.Read(array, totalBytesRead, count - totalBytesRead);
+                        if (bytesRead == 0) break; // No more bytes to read
+                        totalBytesRead += bytesRead;
+                    }
                 }
             }
             else if (Position > pck.Length && pkx != null)
             {
-                pkx.Read(array, 0, count);
+                while (totalBytesRead < count)
+                {
+                    bytesRead = pkx.Read(array, totalBytesRead, count - totalBytesRead);
+                    if (bytesRead == 0) break; // No more bytes to read
+                    totalBytesRead += bytesRead;
+                }
             }
             Position += count;
             return array;

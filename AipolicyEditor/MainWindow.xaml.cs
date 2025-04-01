@@ -49,8 +49,8 @@ namespace AipolicyEditor
                 Operations.ContextMenuClosing += Operations_ContextMenuClosing;
                 Controllers.ContextMenuOpening += Generic_ContextMenuOpening;
                 Controllers.ContextMenuClosing += Generic_ContextMenuClosing;
-                Triggers.ContextMenuOpening += Generic_ContextMenuOpening;
-                Triggers.ContextMenuClosing += Generic_ContextMenuClosing;
+                TriggersList.ContextMenuOpening += Generic_ContextMenuOpening;
+                TriggersList.ContextMenuClosing += Generic_ContextMenuClosing;
                 
                 #region Custom editors
                 Operation.CustomEditorCollection.Add(new Syncfusion.Windows.PropertyGrid.CustomEditor()
@@ -350,8 +350,8 @@ namespace AipolicyEditor
         #region Triggers
         private void Triggers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Triggers.SelectedIndex > -1)
-                Triggers.ScrollIntoView(Triggers.SelectedItem);
+            if (TriggersList.SelectedIndex > -1)
+                TriggersList.ScrollIntoView(TriggersList.SelectedItem);
             if (Aipolicy.CurrentTrigger != null)
             {
                 Dispatcher.Invoke(new Action(() => Condition.Cond = Aipolicy.CurrentTrigger.RootConditon));
@@ -365,7 +365,7 @@ namespace AipolicyEditor
 
         private void CloneTrigger(object sender, RoutedEventArgs e)
         {
-            var selectedItems = Triggers.SelectedItems.Cast<CTriggerData>().ToList();
+            var selectedItems = TriggersList.SelectedItems.Cast<CTriggerData>().ToList();
 
             foreach (var item in selectedItems)
             {
@@ -391,7 +391,7 @@ namespace AipolicyEditor
 
         private void RemoveTrigger(object sender, RoutedEventArgs e)
         {
-            var selectedItems = Triggers.SelectedItems.Cast<CTriggerData>().ToList();
+            var selectedItems = TriggersList.SelectedItems.Cast<CTriggerData>().ToList();
 
             foreach (var item in selectedItems)
             {
@@ -401,19 +401,19 @@ namespace AipolicyEditor
 
         private void ExportTrigger(object sender, RoutedEventArgs e)
         {
-            if (Triggers.SelectedItems.Count < 1)
+            if (TriggersList.SelectedItems.Count < 1)
                 return;
             SaveFileDialog sfd = new SaveFileDialog()
             {
-                FileName = $"ai_trigger_{Triggers.SelectedItems.Count}.aie"
+                FileName = $"ai_trigger_{TriggersList.SelectedItems.Count}.aie"
             };
             if (sfd.ShowDialog() == true)
             {
                 BinaryWriter bw = new BinaryWriter(File.OpenWrite(sfd.FileName));
-                bw.Write(Triggers.SelectedItems.Count);
-                for (int i = 0; i < Triggers.SelectedItems.Count; ++i)
+                bw.Write(TriggersList.SelectedItems.Count);
+                for (int i = 0; i < TriggersList.SelectedItems.Count; ++i)
                 {
-                    var data = Aipolicy.CurrentTriggers.Where(x => x == Triggers.SelectedItems[i]).ToList();
+                    var data = Aipolicy.CurrentTriggers.Where(x => x == TriggersList.SelectedItems[i]).ToList();
                     if (data.Count > 0)
                     {
                         data.First().Write(bw);
