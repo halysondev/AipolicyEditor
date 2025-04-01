@@ -40,6 +40,8 @@
         Mul = 2,
         Div = 3,
         Mod = 4,
+        Exp = 5,
+        Root = 6,
         Num
     }
 

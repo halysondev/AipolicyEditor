@@ -378,7 +378,7 @@
             <Controls:ToggleSwitch IsOn ="{Binding CurrentTrigger.Run, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnContent="Yes" OffContent="No" Header="Run" Margin="191,10,0,10" Foreground="#FFFFFFFF" VerticalAlignment="Stretch" Grid.Column="4" Grid.RowSpan="2" Width="84" />
             <Controls:ToggleSwitch IsOn ="{Binding CurrentTrigger.AttackValid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnContent="Yes" OffContent="No" Header="Attack Valid" Margin="327,10,75,10" Foreground="#FFFFFFFF" VerticalAlignment="Stretch" Grid.Column="4" HorizontalAlignment="Stretch" Grid.RowSpan="2" />
             <Label Content="Version" Margin="0,6,1,4"  Foreground="#FFFFFFFF" RenderTransformOrigin="0.3,0.018" Grid.Column="2"/>
-            <Controls:NumericUpDown Value="{Binding CurrentTrigger.Version, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="2,6,5,4" Background="#FF1A2430" BorderBrush="#CC119EDA" ValueChanged="NumericUpDown_ValueChanged" ValueDecremented="NumericUpDown_ValueDecremented" ValueIncremented="NumericUpDown_ValueIncremented" Maximum="40" Minimum="1" NumericInputMode="Decimal" Grid.Column="3"/>
+            <Controls:NumericUpDown Value="{Binding CurrentTrigger.Version, Converter={StaticResource StringFormatToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="2,6,5,4" Background="#FF1A2430" BorderBrush="#CC119EDA" ValueChanged="NumericUpDown_ValueChanged" ValueDecremented="NumericUpDown_ValueDecremented" ValueIncremented="NumericUpDown_ValueIncremented" Maximum="100" Minimum="1" NumericInputMode="Decimal" Grid.Column="3"/>
         </Grid>
     </Grid>
     <Controls:MetroWindow.Flyouts>
