@@ -52,6 +52,7 @@
         Const = 2,
         Random = 3,
         HistoryVarId = 4,
+        HistoryDoubleVarId = 5,
         Num
     }
 
