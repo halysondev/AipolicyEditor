@@ -16,7 +16,7 @@ namespace AipolicyEditor.AIPolicy.Operations
         {
             InitializeComponent();
             CurrentVersion = version; // Initialize CurrentVersion with the passed version
-            for (int i = 0; i < 201; ++i)
+            for (int i = 0; i < 202; ++i)
             {
                 IOperation op = Operation.Read(null, version, i);
                 if (op != null)

@@ -46,10 +46,10 @@ namespace AipolicyEditor.AIPolicy.Operations
         {
             Dst = 0;
             DstType = VarType.GlobalVarID;
-            Src1 = 0;
+            Src1 = 0.0F;
             Src1Type = VarType.GlobalVarID;
             Op = OperatorType.Add;
-            Src2 = 0;
+            Src2 = 0.0F;
             Src2Type = VarType.GlobalVarID;
             Target = new TargetParam();
         }

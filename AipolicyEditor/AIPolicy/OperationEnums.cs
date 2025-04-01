@@ -56,6 +56,13 @@
         Num
     }
 
+    public enum VarTypeConst : uint
+    {
+        Int = 0,
+        Float = 1,
+        Num,
+    }
+
     public enum MonsterPatrolSpeedType : uint
     {
         Begin = 0,

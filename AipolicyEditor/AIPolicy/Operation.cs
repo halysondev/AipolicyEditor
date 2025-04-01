@@ -485,6 +485,10 @@ namespace AipolicyEditor.AIPolicy
                     op = new O_CALC_VAR_FLOAT();
                     break;
 
+                case 201:
+                    op = new O_CALC_VAR_MULTI();
+                    break;
+
                 default:
                     MessageBox.Show($"Unknown operation id {id} at pos {br.BaseStream.Position}");
                     break;

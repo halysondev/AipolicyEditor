@@ -517,6 +517,7 @@
     <Compile Include="AIPolicy\Operations\O_104.cs" />
     <Compile Include="AIPolicy\Operations\O_106.cs" />
     <Compile Include="AIPolicy\Operations\O_105.cs" />
+    <Compile Include="AIPolicy\Operations\O_CALC_VAR_MULTI.cs" />
     <Compile Include="AIPolicy\Operations\O_CALC_VAR_FLOAT .cs" />
     <Compile Include="AIPolicy\Operations\O_MASS_ACTIVE_CONTROLLER.cs" />
     <Compile Include="AIPolicy\Operations\O_BOSS_RUSH_AWARD.cs" />
@@ -836,14 +837,12 @@ xcopy "$(ProjectDir)*.dll" "$(TargetDir)" /Y
 </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Fody.6.8.2\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.2\build\Fody.targets')" />
-
   <!-- Post-build signing -->
   <Target Name="SignAssembly" AfterTargets="AfterBuild">
     <Exec Command="echo &quot;Signing output file: $(TargetPath)&quot;" />
     <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe&quot; sign /n &quot;HC DESENVOLVIMENTOS LTDA&quot; /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /as /v &quot;$(TargetPath)&quot;" />
     <Exec Command="echo &quot;Signing completed successfully!&quot;" />
   </Target>
-
   <!-- Publish signing -->
   <Target Name="SignPublishedFiles" AfterTargets="Publish">
     <Exec Command="echo &quot;Signing published file: $(PublishDir)$(TargetName).exe&quot;" />
