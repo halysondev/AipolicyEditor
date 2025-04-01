@@ -172,6 +172,9 @@ namespace AipolicyEditor.AIPolicy
             }
         }
 
+        // Flag to optimize context menu operations
+        private bool _isSuspendingNotifications = false;
+
         public void Read(string path)
         {
             this.path = path;
@@ -263,10 +266,27 @@ namespace AipolicyEditor.AIPolicy
             Utils.ShowMessage(MainWindow.Provider.GetLocalizedString("FileSaved"));
         }
 
+        // Method to suspend property change notifications temporarily
+        public void SuspendNotifications()
+        {
+            _isSuspendingNotifications = true;
+        }
+
+        // Method to resume property change notifications
+        public void ResumeNotifications()
+        {
+            _isSuspendingNotifications = false;
+            // Refresh the UI with a single notification
+            OnPropertyChanged("CurrentOperation");
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            if (!_isSuspendingNotifications && PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
         }
     }
 }

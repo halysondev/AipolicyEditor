@@ -43,6 +43,15 @@ namespace AipolicyEditor
                 DataContext = Aipolicy;
                 Condition.IsCentral = true;
                 SearchFlyout.Aipolicy = Aipolicy;
+                
+                // Subscribe to context menu events
+                Operations.ContextMenuOpening += Operations_ContextMenuOpening;
+                Operations.ContextMenuClosing += Operations_ContextMenuClosing;
+                Controllers.ContextMenuOpening += Generic_ContextMenuOpening;
+                Controllers.ContextMenuClosing += Generic_ContextMenuClosing;
+                Triggers.ContextMenuOpening += Generic_ContextMenuOpening;
+                Triggers.ContextMenuClosing += Generic_ContextMenuClosing;
+                
                 #region Custom editors
                 Operation.CustomEditorCollection.Add(new Syncfusion.Windows.PropertyGrid.CustomEditor()
                 {
@@ -455,16 +464,27 @@ namespace AipolicyEditor
 
         private void AddOperation(object sender, RoutedEventArgs e)
         {
+            // Suspend notifications before showing the operation selector
+            Aipolicy.SuspendNotifications();
+            
             OperationSelector os = new OperationSelector(Aipolicy.CurrentTrigger.Version);
             os.ShowDialog();
             if (os.Op != null)
             {
                 Aipolicy.CurrentTrigger.Version = os.GetUpdatedVersion();
                 Aipolicy.CurrentTrigger.Operations.Add(os.Op);
+                
+                // Resume notifications and update the UI
+                Aipolicy.ResumeNotifications();
                 Aipolicy.OnPropertyChanged("TriggerIndex");
                 Aipolicy.OnPropertyChanged("CurrentTrigger");
                 Aipolicy.OnPropertyChanged("CurrentOperations");
                 Aipolicy.OnPropertyChanged("OperationsHeader");
+            }
+            else
+            {
+                // Resume notifications even if no operation was selected
+                Aipolicy.ResumeNotifications();
             }
         }
 
@@ -525,6 +545,31 @@ namespace AipolicyEditor
             }
         }
         #endregion
+
+        // Context menu optimization handlers
+        private void Operations_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            // Suspend notifications before opening context menu
+            Aipolicy.SuspendNotifications();
+        }
+
+        private void Operations_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+            // Resume notifications after context menu closes
+            Aipolicy.ResumeNotifications();
+        }
+
+        private void Generic_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            // Suspend notifications before opening context menu
+            Aipolicy.SuspendNotifications();
+        }
+
+        private void Generic_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+            // Resume notifications after context menu closes
+            Aipolicy.ResumeNotifications();
+        }
 
         private void NumericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double?> e)
         {

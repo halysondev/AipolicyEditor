@@ -836,4 +836,18 @@ xcopy "$(ProjectDir)*.dll" "$(TargetDir)" /Y
 </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Fody.6.8.2\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.2\build\Fody.targets')" />
+
+  <!-- Post-build signing -->
+  <Target Name="SignAssembly" AfterTargets="AfterBuild">
+    <Exec Command="echo &quot;Signing output file: $(TargetPath)&quot;" />
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe&quot; sign /n &quot;HC DESENVOLVIMENTOS LTDA&quot; /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /as /v &quot;$(TargetPath)&quot;" />
+    <Exec Command="echo &quot;Signing completed successfully!&quot;" />
+  </Target>
+
+  <!-- Publish signing -->
+  <Target Name="SignPublishedFiles" AfterTargets="Publish">
+    <Exec Command="echo &quot;Signing published file: $(PublishDir)$(TargetName).exe&quot;" />
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe&quot; sign /n &quot;HC DESENVOLVIMENTOS LTDA&quot; /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /as /v &quot;$(PublishDir)$(TargetName).exe&quot;" />
+    <Exec Command="echo &quot;Published file signing completed successfully!&quot;" />
+  </Target>
 </Project>
