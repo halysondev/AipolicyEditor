@@ -42,6 +42,7 @@
         Mod = 4,
         Exp = 5,
         Root = 6,
+        Delete = 7,
         Num
     }
 
@@ -53,13 +54,15 @@
         Random = 3,
         HistoryVarId = 4,
         HistoryDoubleVarId = 5,
+        VariantVarId = 6,
         Num
     }
 
     public enum VarTypeConst : uint
     {
-        Int = 0,
-        Float = 1,
+        NoCalc = 0,
+        Int = 1,
+        Float = 2,
         Num,
     }
 

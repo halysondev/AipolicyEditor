@@ -98,29 +98,29 @@ namespace AipolicyEditor.AIPolicy.Operations
             Dst = 0;
             DstType = VarType.GlobalVarID;
             //-------------------------------------- // 1st operation
-            Src1VarTypeConst = VarTypeConst.Int;
+            Src1VarTypeConst = VarTypeConst.NoCalc;
             Src1 = 0.0F;
-            Src1Type = VarType.GlobalVarID;
+            Src1Type = VarType.Const;
             Op1 = OperatorType.Add;
             //-------------------------------------- // 2nd operation
-            Src2VarTypeConst = VarTypeConst.Int;
+            Src2VarTypeConst = VarTypeConst.NoCalc;
             Src2 = 0.0F;
-            Src2Type = VarType.GlobalVarID;
+            Src2Type = VarType.Const;
             Op2 = OperatorType.Add;
             //-------------------------------------- // 3rd operation
-            Src3VarTypeConst = VarTypeConst.Int;
+            Src3VarTypeConst = VarTypeConst.NoCalc;
             Src3 = 0.0F;
-            Src3Type = VarType.GlobalVarID;
+            Src3Type = VarType.Const;
             Op3 = OperatorType.Add;
             //-------------------------------------- // 4th operation
-            Src4VarTypeConst = VarTypeConst.Int;
+            Src4VarTypeConst = VarTypeConst.NoCalc;
             Src4 = 0.0F;
-            Src4Type = VarType.GlobalVarID;
+            Src4Type = VarType.Const;
             Op4 = OperatorType.Add;
             //-------------------------------------- // 5th operation
-            Src5VarTypeConst = VarTypeConst.Int;
+            Src5VarTypeConst = VarTypeConst.NoCalc;
             Src5 = 0.0F;
-            Src5Type = VarType.GlobalVarID;
+            Src5Type = VarType.Const;
             Op5 = OperatorType.Add;
             //--------------------------------------
             Target = new TargetParam();
