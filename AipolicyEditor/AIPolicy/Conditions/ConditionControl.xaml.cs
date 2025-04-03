@@ -106,9 +106,13 @@ namespace AipolicyEditor.AIPolicy.Conditions
 
         private void Label_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ConditionEdit conditionEdit = new ConditionEdit((sender as ConditionLabel).cond);
-            conditionEdit.Reload += Reload;
-            conditionEdit.ShowDialog();
+            // Only open edit dialog on left mouse button click
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                ConditionEdit conditionEdit = new ConditionEdit((sender as ConditionLabel).cond);
+                conditionEdit.Reload += Reload;
+                conditionEdit.ShowDialog();
+            }
         }
 
         private void Label_MouseLeave(object sender, MouseEventArgs e)
@@ -121,6 +125,77 @@ namespace AipolicyEditor.AIPolicy.Conditions
         {
             (sender as ConditionLabel).Foreground = new SolidColorBrush(Color.FromArgb(204, 17, 158, 218));
             BaseGrid.Background = Brushes.LightYellow;
+        }
+
+        private void AddCondition_Click(object sender, RoutedEventArgs e)
+        {
+            if (Cond == null)
+                return;
+
+            if (Cond.Type == 3) // Terminal condition
+            {
+                // Convert to logical operator (AND or OR)
+                Cond.Type = 1; // Logical operator
+                Cond.ID = 7; // Set to AND operator (7 is AND, 6 is OR)
+                
+                // Create a new right condition
+                Cond.ConditionRight = Conditions.CreateEmpty();
+                
+                // Move current condition values to left
+                Condition leftCond = new Condition
+                {
+                    ID = Cond.ID,
+                    Type = 3,
+                    Value = Cond.Value
+                };
+                Cond.ConditionLeft = leftCond;
+                
+                // Reset current condition values
+                Cond.Value = new object[0];
+            }
+            else if (Cond.Type == 1 || Cond.Type == 2)
+            {
+                // Add a new condition to the right
+                if (Cond.ConditionRight == null)
+                    Cond.ConditionRight = Conditions.CreateEmpty();
+                
+                // Or show the edit dialog for the right condition
+                ConditionEdit conditionEdit = new ConditionEdit(Cond.ConditionRight);
+                conditionEdit.Reload += Reload;
+                conditionEdit.ShowDialog();
+            }
+            
+            Reload();
+        }
+
+        private void DeleteCondition_Click(object sender, RoutedEventArgs e)
+        {
+            if (Cond == null)
+                return;
+
+            // Get the parent condition control if this is a nested condition
+            ConditionControl parentControl = this.Parent as ConditionControl;
+            
+            if (parentControl != null && parentControl.Cond != null)
+            {
+                // If this is a left or right condition of a parent
+                if (parentControl.Cond.ConditionLeft == Cond)
+                {
+                    parentControl.Cond.ConditionLeft = Conditions.CreateEmpty();
+                    parentControl.Reload();
+                }
+                else if (parentControl.Cond.ConditionRight == Cond)
+                {
+                    parentControl.Cond.ConditionRight = Conditions.CreateEmpty();
+                    parentControl.Reload();
+                }
+            }
+            else
+            {
+                // If this is the root condition, reset it to an empty condition
+                Cond = Conditions.CreateEmpty();
+                Reload();
+            }
         }
     }
 }

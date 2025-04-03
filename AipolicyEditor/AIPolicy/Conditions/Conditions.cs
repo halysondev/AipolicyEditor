@@ -53,6 +53,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
                 //case 45:
                 //case 46:
                 //case 47:
+                case 200:
                     return new object[] { 0 };
                 case 18:
                 case 24:
@@ -136,6 +137,7 @@ namespace AipolicyEditor.AIPolicy.Conditions
                 case 54:
                 case 55:
                 case 56:
+                case 200:
                     return 3;
                 default:
                     return 1;
@@ -214,8 +216,12 @@ namespace AipolicyEditor.AIPolicy.Conditions
                 case 55:
                 case 56:
                     return MainWindow.Provider.GetLocalizedString($"c{id}");
+
+                case 200:
+                    return "VariantID";
+
                 default:
-                    return "UNKNOWN";
+                    return $"unk_{id}";
             }
         }
 
@@ -299,6 +305,8 @@ namespace AipolicyEditor.AIPolicy.Conditions
                     return new string[] { "ID", "IDType" };
                 case 35:
                     return new string[] { "Radius" };
+                case 200:
+                    return new string[] { "VariantID" };
                 default:
                     Utils.ShowMessage($"Unknown condition type: {Type}");
                     return new string[0];
@@ -386,6 +394,11 @@ namespace AipolicyEditor.AIPolicy.Conditions
                     Array.Copy(data, val1, 4);
                     Array.Copy(data, 4, val2, 0, 4);
                     return new object[] { BitConverter.ToInt32(val1, 0), BitConverter.ToSingle(val2, 0) };
+
+                case 200:
+                    Array.Copy(data, val1, 4);
+                    return new object[] { BitConverter.ToInt32(val1, 0) };
+
                 default:
                     return new object[0];
             }
@@ -461,6 +474,12 @@ namespace AipolicyEditor.AIPolicy.Conditions
                     Array.Copy(BitConverter.GetBytes(Convert.ToInt32(param[0])), data, 4);
                     Array.Copy(BitConverter.GetBytes(Convert.ToSingle(param[1])), 0, data, 4, 4);
                     return data;
+
+                case 200:
+                    data = new byte[4];
+                    Array.Copy(BitConverter.GetBytes(Convert.ToInt32(param[0])), data, 4);
+                    return data;
+
                 default:
                     return new byte[0];
             }
@@ -520,6 +539,9 @@ namespace AipolicyEditor.AIPolicy.Conditions
                 count = 45;
             else if (CTriggerData.MaxVersion <= 40)
                 count = 48;
+            else if (CTriggerData.MaxVersion <= 100)
+                count = 203;
+
             for (int i = 0; i < count; ++i)
                 list.Add(GetName(i));
             return list;
