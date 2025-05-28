@@ -179,6 +179,9 @@
                     <Separator />
                     <MenuItem Header="Export" Click="ExportController"/>
                     <MenuItem Header="Import" Click="ImportController"/>
+                    <Separator />
+                    <MenuItem Header="Export All to JSON" Click="ExportAllToJson"/>
+                    <MenuItem Header="Export Selected to JSON" Click="ExportSelectedToJson"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>

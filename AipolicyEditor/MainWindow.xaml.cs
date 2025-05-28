@@ -345,6 +345,61 @@ namespace AipolicyEditor
                 br.Close();
             }
         }
+
+        private void ExportAllToJson(object sender, RoutedEventArgs e)
+        {
+            if (Aipolicy.Controllers.Count == 0)
+            {
+                Utils.ShowMessage("No policies to export.");
+                return;
+            }
+
+            System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog()
+            {
+                Description = "Select folder to export JSON files"
+            };
+
+            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    JsonExporter.ExportAllPoliciesToJson(Aipolicy, folderDialog.SelectedPath);
+                    Utils.ShowMessage($"Successfully exported {Aipolicy.Controllers.Count} policies to JSON files.");
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowMessage($"Error exporting to JSON: {ex.Message}");
+                }
+            }
+        }
+
+        private void ExportSelectedToJson(object sender, RoutedEventArgs e)
+        {
+            if (Controllers.SelectedItems.Count == 0)
+            {
+                Utils.ShowMessage("No policies selected for export.");
+                return;
+            }
+
+            System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog()
+            {
+                Description = "Select folder to export JSON files"
+            };
+
+            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    var selectedPolicies = Controllers.SelectedItems.Cast<CPolicyData>();
+                    JsonExporter.ExportSelectedPoliciesToJson(selectedPolicies, folderDialog.SelectedPath);
+                    Utils.ShowMessage($"Successfully exported {Controllers.SelectedItems.Count} policies to JSON files.");
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowMessage($"Error exporting to JSON: {ex.Message}");
+                }
+            }
+        }
         #endregion
 
         #region Triggers
